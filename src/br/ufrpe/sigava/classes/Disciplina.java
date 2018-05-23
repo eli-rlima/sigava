@@ -1,3 +1,5 @@
+package br.ufrpe.sigava.classes;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,15 +30,15 @@ public class Disciplina{
 	  
   }
 
-    public int getDuracaoAula() {
+  public int getDuracaoAula() {
         return duracaoAula;
     }
 
-    public void setDuracaoAula(int duracaoAula) {
+  public void setDuracaoAula(int duracaoAula) {
         this.duracaoAula = duracaoAula;
     }
 
-    public String getNome() {
+  public String getNome() {
     return nome;
   }
 
@@ -80,6 +82,10 @@ public class Disciplina{
     this.dataFim = dataFim;
   }
 
+  public LocalDate getDataFim() {
+      return dataFim;
+  }
+
   public void setDiaAula(DayOfWeek diaAula) {
     this.diaAula = diaAula;
   }
@@ -115,7 +121,7 @@ public class Disciplina{
     return retorno;
 }
   
-  public LocalDate getDataFim(){
+  public LocalDate gerarDataFim(){
       LocalDate dataFim = null;
       LocalDate dataInicioP = this.getDataInicio();
       DayOfWeek diaAula = this.getDiaAula();
@@ -133,43 +139,43 @@ public class Disciplina{
       return dataFim;
     }
 
-  
-  public int getCargaHorariaRestante(){
+  public int gerarCargaHorariaRestante(){
       int cargaHorariaRestante = 0;
-      LocalDate dataInicio = this.getDataInicio();
+      LocalDate dataInicioP = this.getDataInicio();
       LocalDate hoje = LocalDate.now();
       DayOfWeek diaAula = this.getDiaAula();
       int cargaHoraria = this.getCargaHoraria();
 
-        if (dataInicio.isBefore(hoje)){
-            for (int i = cargaHoraria; dataInicio.isBefore(hoje);){
-                if (dataInicio.getDayOfWeek().equals(diaAula)){
-                    i -= this.getDuracaoAula();
-                    dataInicio.plusDays(1);
-                    cargaHorariaRestante = i;
-                }
-                else{
-                    dataInicio.plusDays(1);
-                }
-            }
+      if (dataInicioP.isBefore(hoje)){
+          for (int i = cargaHoraria; dataInicioP.isBefore(hoje);){
+               if (dataInicioP.getDayOfWeek().equals(diaAula)) {
+                   i -= this.getDuracaoAula();
+                   dataInicioP = dataInicioP.plusDays(1);
+                   cargaHorariaRestante = i;
+               }
+               else{
+                   dataInicioP = dataInicioP.plusDays(1);
+               }
+          }
 
-            if (hoje.getDayOfWeek().equals(diaAula)){
-                cargaHorariaRestante -= this.getDuracaoAula();
-            }
+          if (hoje.getDayOfWeek().equals(diaAula)){
+              cargaHorariaRestante -= this.getDuracaoAula();
+          }
         }
-        else cargaHorariaRestante = cargaHoraria;
+      else cargaHorariaRestante = cargaHoraria;
 
-        return cargaHorariaRestante;
-      }
+      return cargaHorariaRestante;
+  }
 
-    public String toString() {
+  public String toString() {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
       return "Nome da Disciplina: " + this.getNome() + "" + "\nProfessor:" + this.getProfessor().getNome()
-          + "Início da disciplina: " + this.getDataFim().format(formatter) + "\nData termino da disciplina: "
+          + "Inï¿½cio da disciplina: " + this.getDataFim().format(formatter) + "\nData termino da disciplina: "
           + this.getDataFim().format(formatter) + "\nDia que ocorre a aula:" + this.getDiaAula().toString()
-          + "\nCarga Horária: " + this.getCargaHoraria();
+          + "\nCarga Horï¿½ria: " + this.getCargaHoraria();
     }
-    public boolean equals(Disciplina obj) {
+
+  public boolean equals(Disciplina obj) {
         boolean retorno = false;
         if (obj.getAlunos() != null && obj.getDataFim() != null && obj.getDataInicio() != null
             && obj.getDiaAula() != null && obj.getNome() != null && obj.getProfessor() != null) {
@@ -192,4 +198,4 @@ public class Disciplina{
         return retorno;
       }
 
-    }
+}
