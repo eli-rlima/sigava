@@ -15,7 +15,7 @@ public class ClasseTeste {
 	LocalDate dataComeco = LocalDate.of(2018, 05, 19);
 	LocalDate dataTermino = LocalDate.of(2018, 05, 29);
 	
-	System.out.println("Impress�o do teste Pessoa");
+	System.out.println("Impressao do teste Pessoa");
 	Pessoa aluno = new Pessoa("Arthur", "arthur@gmail.com", 'M', dataNasc,"arthur123","808057538-00");
 	
 	
@@ -28,7 +28,7 @@ public class ClasseTeste {
 	aluno1.setDataNascimento(dataNasci);
 	aluno1.setSenha("senha789");
 	/**
-	 * cpf n�o pode ser usado como Set, pois s� � acesso pelo construtor
+	 * cpf nao pode ser usado como Set, pois so eh acesso pelo construtor
 	 */
 	System.out.println(aluno.toString());
 	System.out.println();
@@ -37,7 +37,7 @@ public class ClasseTeste {
 	System.out.println(aluno.equals(aluno1));
 	System.out.println();
 	
-	System.out.println("Impress�o do teste Tarefa");
+	System.out.println("Impressao do teste Tarefa");
 	Tarefa tarefa = new Tarefa("Integrais definidas", dataInicio, dataFim, 01);
 	
 	Tarefa tarefa1 = new Tarefa();
@@ -57,7 +57,7 @@ public class ClasseTeste {
 	DayOfWeek diaAula = DayOfWeek.TUESDAY; 
 	DayOfWeek diaAula1 = DayOfWeek.THURSDAY;
 	
-	System.out.println("Impress�o do teste Disciplina");
+	System.out.println("Impressao do teste Disciplina");
 	Disciplina disciplina1 = new Disciplina("POO", dataComeco, diaAula, 4,60);
 	Pessoa professor = new Pessoa();
 	professor.setNome("Leandro");

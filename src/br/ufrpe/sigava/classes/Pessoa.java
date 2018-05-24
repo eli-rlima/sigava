@@ -68,11 +68,11 @@ public class Pessoa {
 
     public String toString() {
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Nome = '" + this.getNome() + '\'' +
-                ", e-mail = '" + this.getEmail() + '\'' +
-                ", Sexo = " + this.getSexo() +
-                ", Data de nascimento = " + this.getDataNascimento() +
-                ", CPF = '" + this.getCpf() + '\'';
+        return "Nome = " + this.getNome() +
+                "\nE-mail = " + this.getEmail() +
+                "\nSexo = " + this.getSexo() +
+                "\nData de nascimento = " + this.getDataNascimento() +
+                "\nCPF = '" + this.getCpf();
 
     }
 

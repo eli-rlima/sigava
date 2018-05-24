@@ -60,10 +60,10 @@ public class Tarefa {
     
     public String toString() { 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-        return "C�digo da tarefa: " + this.getCodigoTarefa() +  "\n" + 
-                "Descricao da tarefa: " + this.getDescricao() + "\n" + 
-                "Data Inicio = " + this.getDataInicio().format(formatter) + "\n" + 
-                "Data Termino = " + this.getDataTermino().format(formatter) + "\n" + 
+        return "Codigo da tarefa: " + this.getCodigoTarefa() +
+                "\nDescricao da tarefa: " + this.getDescricao() +
+                "\nData Inicio = " + this.getDataInicio().format(formatter) +
+                "\nData Termino = " + this.getDataTermino().format(formatter) +
                 this.getDuracao() + " dias para a data da entrega."; 
     } 
  

@@ -132,10 +132,11 @@ public class Disciplina{
               i -= this.getDuracaoAula();
               dataInicioP = dataInicioP.plusDays(1);
             }
-          else{
-        	   dataInicioP = dataInicioP.plusDays(1);
+          else {
+              dataInicioP = dataInicioP.plusDays(1);
           }
         }
+        dataInicioP = dataInicioP.plusDays(-1);
         dataFim = dataInicioP;
       return dataFim;
     }
@@ -171,9 +172,9 @@ public class Disciplina{
   public String toString() {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
       return "Nome da Disciplina: " + this.getNome() + "" + "\nProfessor:" + this.getProfessor().getNome()+ "\n"
-          + "In�cio da disciplina: " + this.getDataInicio().format(formatter) + "\nData termino da disciplina: "
+          + "Inicio da disciplina: " + this.getDataInicio().format(formatter) + "\nData termino da disciplina: "
           + this.getDataFim().format(formatter) + "\nDia que ocorre a aula:" + this.getDiaAula()
-          + "\nCarga Hor�ria: " + this.getCargaHoraria();
+          + "\nCarga Horaria: " + this.getCargaHoraria();
     }
 
   public boolean equals(Disciplina obj) {
