@@ -19,6 +19,7 @@ public class Pessoa {
         this.setSenha(senha);
         this.cpf = cpf;
     }
+    public Pessoa(){}
 
     public String getCpf() {
         return cpf;
@@ -26,7 +27,7 @@ public class Pessoa {
 
     public String getNome() {
 
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -66,11 +67,11 @@ public class Pessoa {
     }
 
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "Nome = '" + this.getNome() + '\'' +
                 ", e-mail = '" + this.getEmail() + '\'' +
                 ", Sexo = " + this.getSexo() +
-                ", Data de nascimento = " + this.getDataNascimento().format(formatter) +
+                ", Data de nascimento = " + this.getDataNascimento() +
                 ", CPF = '" + this.getCpf() + '\'';
 
     }

@@ -9,13 +9,13 @@ public class Disciplina{
 
   private String nome;
   private Pessoa professor;
-  private ArrayList<Pessoa> alunos = new ArrayList();
+  private ArrayList<Pessoa> alunos = new ArrayList<Pessoa>();
   private LocalDate dataInicio;
   private LocalDate dataFim;
   private DayOfWeek diaAula;
   private int duracaoAula;
   private int cargaHoraria;
-  private ArrayList<Tarefa> tarefas = new ArrayList();
+  private ArrayList<Tarefa> tarefas = new ArrayList<Tarefa>();
 
 
   public Disciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula,int cargaHoraria) {
@@ -24,10 +24,11 @@ public class Disciplina{
     this.setDiaAula(diaAula);
     this.setDuracaoAula(duracaoAula);
     this.setCargaHoraria(cargaHoraria);
-  	}
+    this.setDataFim(this.gerarDataFim());
+    }
   
   public Disciplina() {
-	  
+
   }
 
   public int getDuracaoAula() {
@@ -169,9 +170,9 @@ public class Disciplina{
 
   public String toString() {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-      return "Nome da Disciplina: " + this.getNome() + "" + "\nProfessor:" + this.getProfessor().getNome()
-          + "In�cio da disciplina: " + this.getDataFim().format(formatter) + "\nData termino da disciplina: "
-          + this.getDataFim().format(formatter) + "\nDia que ocorre a aula:" + this.getDiaAula().toString()
+      return "Nome da Disciplina: " + this.getNome() + "" + "\nProfessor:" + this.getProfessor().getNome()+ "\n"
+          + "In�cio da disciplina: " + this.getDataInicio().format(formatter) + "\nData termino da disciplina: "
+          + this.getDataFim().format(formatter) + "\nDia que ocorre a aula:" + this.getDiaAula()
           + "\nCarga Hor�ria: " + this.getCargaHoraria();
     }
 

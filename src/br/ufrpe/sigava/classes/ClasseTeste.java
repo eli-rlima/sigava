@@ -1,3 +1,5 @@
+package br.ufrpe.sigava.classes;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
@@ -13,7 +15,7 @@ public class ClasseTeste {
 	LocalDate dataComeco = LocalDate.of(2018, 05, 19);
 	LocalDate dataTermino = LocalDate.of(2018, 05, 29);
 	
-	System.out.println("Impressão do teste Pessoa");
+	System.out.println("Impressï¿½o do teste Pessoa");
 	Pessoa aluno = new Pessoa("Arthur", "arthur@gmail.com", 'M', dataNasc,"arthur123","808057538-00");
 	
 	
@@ -26,15 +28,16 @@ public class ClasseTeste {
 	aluno1.setDataNascimento(dataNasci);
 	aluno1.setSenha("senha789");
 	/**
-	 * cpf não pode ser usado como Set, pois só é acesso pelo construtor
+	 * cpf nï¿½o pode ser usado como Set, pois sï¿½ ï¿½ acesso pelo construtor
 	 */
 	System.out.println(aluno.toString());
 	System.out.println();
 	System.out.println(aluno1.toString());
+	System.out.print("Os alunos sÃ£o iguais: ");
 	System.out.println(aluno.equals(aluno1));
 	System.out.println();
 	
-	System.out.println("Impressão do teste Tarefa");
+	System.out.println("Impressï¿½o do teste Tarefa");
 	Tarefa tarefa = new Tarefa("Integrais definidas", dataInicio, dataFim, 01);
 	
 	Tarefa tarefa1 = new Tarefa();
@@ -45,6 +48,7 @@ public class ClasseTeste {
 	System.out.println(tarefa.toString());
 	System.out.println();
 	System.out.println(tarefa1.toString());
+	System.out.print("As tarefas sÃ£o iguais: ");
 	System.out.println(tarefa.equals(tarefa1));
 	
 	System.out.println();
@@ -53,26 +57,28 @@ public class ClasseTeste {
 	DayOfWeek diaAula = DayOfWeek.TUESDAY; 
 	DayOfWeek diaAula1 = DayOfWeek.THURSDAY;
 	
-	System.out.println("Impressão do teste Disciplina");
+	System.out.println("Impressï¿½o do teste Disciplina");
 	Disciplina disciplina1 = new Disciplina("POO", dataComeco, diaAula, 4,60);
-	disciplina1.setDataFim(disciplina1.gerarDataFim());
 	Pessoa professor = new Pessoa();
 	professor.setNome("Leandro");
-	
+	disciplina1.setProfessor(professor);
 	
 	Disciplina disciplina2 = new Disciplina();
 	disciplina2.setNome("Discreta");
+	disciplina2.setDataInicio(dataComeco);
+	disciplina2.setDiaAula(diaAula1);
+	disciplina2.setDuracaoAula(3);
+	disciplina2.setCargaHoraria(30);
+	disciplina2.setDataFim(disciplina2.gerarDataFim());
 	Pessoa professor2 = new Pessoa();
 	professor2.setNome("Maigan");
-	disciplina2.setCargaHoraria(30);
-	disciplina2.setDataInicio(dataComeco);
-	disciplina2.setDataFim(disciplina2.gerarDataFim());
-	disciplina2.setDiaAula(diaAula1);
-	
+	disciplina2.setProfessor(professor2);
+
 	
 	System.out.println(disciplina1.toString());
 	System.out.println();
 	System.out.println(disciplina2.toString());
+	System.out.print("\nAs disciplinas sÃ£o iguais: ");
 	System.out.println(disciplina1.equals(disciplina2));
 	}
 }
