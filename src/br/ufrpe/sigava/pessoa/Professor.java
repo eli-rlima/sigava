@@ -1,4 +1,6 @@
-package br.ufrpe.sigava.classes;
+package br.ufrpe.sigava.pessoa;
+
+import br.ufrpe.sigava.classes.Disciplina;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

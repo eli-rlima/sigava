@@ -1,5 +1,7 @@
 package br.ufrpe.sigava.classes;
 
+import br.ufrpe.sigava.pessoa.Pessoa;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

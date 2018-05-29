@@ -1,7 +1,6 @@
-package br.ufrpe.sigava.classes;
+package br.ufrpe.sigava.pessoa;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Pessoa {
     private String nome;
