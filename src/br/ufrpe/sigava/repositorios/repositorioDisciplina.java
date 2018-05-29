@@ -1,5 +1,4 @@
 package br.ufrpe.sigava.repositorios;
 
-public class RepoTarefas {
-
+public class repositorioDisciplina {
 }
