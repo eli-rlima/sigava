@@ -10,15 +10,15 @@ public class RepositorioAluno {
 
     public RepositorioAluno(){}
 
-    public boolean adicionar (Aluno aluno){
+    public boolean adicionarAluno (Aluno aluno){
         return this.repositorioAluno.add(aluno);
     }
 
-    public boolean remover (Aluno aluno){
+    public boolean removerAluno (Aluno aluno){
         return this.repositorioAluno.remove(aluno);
     }
 
-    public Aluno buscar (String nome){
+    public Aluno buscarAluno (String nome){
         Aluno aluno = null;
         for (int i = 0; i < this.repositorioAluno.size(); i++) {
             if (this.repositorioAluno.get(i).getNome().equalsIgnoreCase(nome)) {
@@ -28,7 +28,7 @@ public class RepositorioAluno {
         return aluno;
     }
 
-    public boolean existe (Aluno aluno) {
+    public boolean existeAluno (Aluno aluno) {
         return this.repositorioAluno.contains(aluno);
     }
 }
