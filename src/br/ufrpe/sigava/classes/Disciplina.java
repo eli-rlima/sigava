@@ -1,6 +1,8 @@
 package br.ufrpe.sigava.classes;
 
+import br.ufrpe.sigava.pessoa.Aluno;
 import br.ufrpe.sigava.pessoa.Pessoa;
+import br.ufrpe.sigava.pessoa.Professor;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,8 +12,8 @@ import java.util.ArrayList;
 public class Disciplina{
 
   private String nome;
-  private Pessoa professor;
-  private ArrayList<Pessoa> alunos = new ArrayList<Pessoa>();
+  private Professor professor;
+  private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
   private LocalDate dataInicio;
   private LocalDate dataFim;
   private DayOfWeek diaAula;
@@ -34,7 +36,7 @@ public class Disciplina{
   }
 
   public int getDuracaoAula() {
-        return duracaoAula;
+        return this.duracaoAula;
     }
 
   public void setDuracaoAula(int duracaoAula) {
@@ -45,7 +47,7 @@ public class Disciplina{
     return nome;
   }
 
-  public Pessoa getProfessor() {
+  public Professor getProfessor() {
   return professor;
  }
   
@@ -69,7 +71,7 @@ public class Disciplina{
     this.nome = nome;
   }
 
-  public void setProfessor(Pessoa professor) {
+  public void setProfessor(Professor professor) {
     this.professor = professor;
   }
 
@@ -97,7 +99,7 @@ public class Disciplina{
     this.cargaHoraria = cargaHoraria;
   }
 		  
-  public boolean adicionarAluno(Pessoa aluno) {
+  public boolean adicionarAluno(Aluno aluno) {
     boolean retorno = false;
     if (aluno != null) {
       this.alunos.add(aluno);
@@ -106,7 +108,7 @@ public class Disciplina{
     return retorno;
   }
 
-  public boolean adicionarProfessor(Pessoa professor) {
+  public boolean adicionarProfessor(Professor professor) {
     boolean retorno = false;
     if (professor != null) {
       this.professor = professor;
