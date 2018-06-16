@@ -11,10 +11,10 @@ public class Tarefa {
     private int codigoTarefa; 
  
     public Tarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa) { 
-        this.descricao = descricao; 
-        this.dataInicio = dataInicio; 
-        this.dataTermino = dataTermino; 
-        this.codigoTarefa = codigoTarefa; 
+        this.setDescricao(descricao);
+        this.setDataInicio(dataInicio);
+        this.setDataTermino(dataTermino);
+        this.setCodigoTarefa(codigoTarefa);
     }
     
     public Tarefa(){
