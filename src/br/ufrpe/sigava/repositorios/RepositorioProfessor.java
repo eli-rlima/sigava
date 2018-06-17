@@ -13,21 +13,21 @@ public class RepositorioProfessor implements IRepositorioProfessor {
     }
 
     @Override
-    public boolean adicionarProfessor (Professor professor){
+    public boolean adicionar (Professor professor){
         return this.repositorioProfessor.add(professor);
     }
 
     @Override
-    public boolean adicionarProfessor (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+    public boolean adicionar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
         Professor professor =  new Professor(nome, email, sexo,dataNascimento,senha,cpf);
-        return adicionarProfessor(professor);
+        return adicionar(professor);
     }
     @Override
-    public boolean removeProfessor (Professor professor){
+    public boolean remover (Professor professor){
         return this.repositorioProfessor.add(professor);
     }
     @Override
-    public Professor buscarProfessor (String nome){
+    public Professor buscar (String nome){
         Professor professor = null;
 
         for(int i = 0; i<this.repositorioProfessor.size(); i++){
@@ -38,7 +38,7 @@ public class RepositorioProfessor implements IRepositorioProfessor {
         return professor;
     }
     @Override
-    public boolean existeProfessor (Professor professor){
+    public boolean existe (Professor professor){
         return this.repositorioProfessor.contains(professor);
     }
 

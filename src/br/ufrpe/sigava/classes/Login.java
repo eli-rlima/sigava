@@ -19,7 +19,9 @@ public class Login {
     }
 
     public boolean realizarLogin(String user, String password){
-        Login logar = new Login (user,password);
+        Login logar = null;
+        logar.setSenha(password);
+        logar.setUsuario(user);
         return realizarLogin(logar);
     }
 
