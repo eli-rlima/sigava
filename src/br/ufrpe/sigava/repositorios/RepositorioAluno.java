@@ -3,6 +3,7 @@ package br.ufrpe.sigava.repositorios;
 import br.ufrpe.sigava.classes.Disciplina;
 import br.ufrpe.sigava.pessoa.Aluno;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RepositorioAluno {
@@ -12,6 +13,11 @@ public class RepositorioAluno {
 
     public boolean adicionarAluno (Aluno aluno){
         return this.repositorioAluno.add(aluno);
+    }
+
+    public boolean adicionarAluno (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+        Aluno aluno = new Aluno(nome,email,sexo,dataNascimento,senha,cpf);
+        return adicionarAluno(aluno);
     }
 
     public boolean removerAluno (Aluno aluno){

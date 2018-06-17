@@ -1,5 +1,7 @@
 package br.ufrpe.sigava.repositorios;
 import br.ufrpe.sigava.classes.Tarefa;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -11,6 +13,13 @@ public class RepositorioTarefa implements IRepositorioTarefa {
     public boolean adicionar(Tarefa tarefa){
         return this.repositorioTarefas.add(tarefa);
     }
+
+    @Override
+    public boolean adicionar (String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa){
+        Tarefa tarefa = new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa);
+        return adicionar(tarefa);
+    }
+
     @Override
     public boolean remover(Tarefa tarefa){
         return this.repositorioTarefas.remove(tarefa);
