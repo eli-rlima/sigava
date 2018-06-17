@@ -6,6 +6,8 @@ import java.time.LocalDate;
 
 public interface IRepositorioDisciplina {
 
+    public boolean adicionar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria);
+
     /**
      * Adiciona uma disciplina no repositório
      *
