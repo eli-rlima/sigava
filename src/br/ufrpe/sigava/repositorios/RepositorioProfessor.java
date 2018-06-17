@@ -24,7 +24,7 @@ public class RepositorioProfessor implements IRepositorioProfessor {
     }
     @Override
     public boolean remover (Professor professor){
-        return this.repositorioProfessor.add(professor);
+        return this.repositorioProfessor.remove(professor);
     }
     @Override
     public Professor buscar (String nome){

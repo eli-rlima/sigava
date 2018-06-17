@@ -11,15 +11,15 @@ public class Professor extends Pessoa {
         super(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
-    public boolean adicionarDisciplina(Disciplina disciplina){
+    public boolean adicionar(Disciplina disciplina){
         return this.disciplinasCadastradas.add(disciplina);
     }
 
-    public boolean removerDisciplina(Disciplina disciplina){
+    public boolean remover(Disciplina disciplina){
         return this.disciplinasCadastradas.remove(disciplina);
     }
 
-    public Disciplina buscarDisciplina(String nomeDisciplina){
+    public Disciplina buscar(String nomeDisciplina){
         Disciplina disciplina = null;
         for (int i = 0; i < this.disciplinasCadastradas.size(); i++){
             if (this.disciplinasCadastradas.get(i).getNome().equals(nomeDisciplina)){
