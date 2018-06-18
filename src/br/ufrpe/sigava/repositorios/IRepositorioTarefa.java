@@ -13,7 +13,7 @@ public interface IRepositorioTarefa {
      *
      * @return true ou false, caso seja adicionado true, caso não false.
      */
-    public boolean adicionar(Tarefa tarefa);
+    boolean adicionar(Tarefa tarefa);
 
     /**
      * Adiciona uma nova tarefa no repositório tarefa
@@ -29,7 +29,7 @@ public interface IRepositorioTarefa {
      *
      * @return true ou false, caso seja adicionado true, caso não false.
      */
-    public boolean adicionar (String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa);
+     boolean adicionar (String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa);
 
     /**
      * Remove uma tareda do repositório tarefa
@@ -39,7 +39,7 @@ public interface IRepositorioTarefa {
      *
      * @return true ou false, caso seja removida true, caso não false.
      */
-    public boolean remover(Tarefa tarefa);
+     boolean remover(Tarefa tarefa);
 
     /**
      * Procura uma tarefa no repositório tarefa
@@ -49,7 +49,7 @@ public interface IRepositorioTarefa {
      *
      * @return a tarefa procurada
      */
-    public Tarefa buscar(int codigo);
+     Tarefa buscar(int codigo);
 
     /**
      * Verifica se a tarefa existe
@@ -59,5 +59,5 @@ public interface IRepositorioTarefa {
      *
      * @return true ou false, caso seja encontrada true, caso não false.
      */
-    public boolean existe(Tarefa tarefa);
+     boolean existe(Tarefa tarefa);
 }

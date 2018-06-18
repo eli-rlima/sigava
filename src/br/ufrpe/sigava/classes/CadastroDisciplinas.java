@@ -4,6 +4,9 @@ import br.ufrpe.sigava.pessoa.Aluno;
 import br.ufrpe.sigava.pessoa.Professor;
 import br.ufrpe.sigava.repositorios.IRepositorioDisciplina;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 public class CadastroDisciplinas {
     private IRepositorioDisciplina repositorioDisciplina;
 
@@ -26,6 +29,23 @@ public class CadastroDisciplinas {
         return retorno;
     }
 
+    public boolean cadastrar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
+        boolean retorno = false;
+        if (nome != null){
+            if (dataInicio != null){
+                if (diaAula != null){
+                    if (duracaoAula > 0){
+                        if (cargaHoraria > 0){
+                            retorno = this.repositorioDisciplina.adicionar(nome, dataInicio, diaAula, duracaoAula,
+                                    cargaHoraria);
+                        }
+                    }
+                }
+            }
+        }
+        return retorno;
+    }
+
     public boolean descadastrar(Disciplina disciplina){
         boolean retorno = false;
         if(disciplina != null){
@@ -44,7 +64,11 @@ public class CadastroDisciplinas {
     }
 
     public boolean existe(Disciplina disciplina){
-        return this.repositorioDisciplina.existe(disciplina);
+        boolean retorno = false;
+        if (disciplina != null){
+            retorno = this.repositorioDisciplina.existe(disciplina);
+        }
+        return retorno;
     }
 
     public boolean cadastrarProfessor(String nome, Professor professor){
