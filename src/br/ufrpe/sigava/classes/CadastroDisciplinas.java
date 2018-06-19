@@ -19,12 +19,9 @@ public class CadastroDisciplinas {
         if (disciplina == null){
             retorno = false;
         }
-        if (!this.repositorioDisciplina.existe(disciplina)) {
+        else if (!this.repositorioDisciplina.existe(disciplina)) {
             this.repositorioDisciplina.adicionar(disciplina);
             retorno = true;
-        }
-        else{
-            retorno = false;
         }
         return retorno;
     }

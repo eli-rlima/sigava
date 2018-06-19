@@ -1,6 +1,8 @@
 package br.ufrpe.sigava.repositorios;
 
+import br.ufrpe.sigava.classes.Cronograma;
 import br.ufrpe.sigava.classes.Disciplina;
+import br.ufrpe.sigava.classes.Marcacao;
 import br.ufrpe.sigava.pessoa.Aluno;
 
 import java.time.LocalDate;
@@ -24,10 +26,10 @@ public class RepositorioAluno {
         return this.repositorioAluno.remove(aluno);
     }
 
-    public Aluno buscar (String nome){
+    public Aluno buscar (String cpf){
         Aluno aluno = null;
         for (int i = 0; i < this.repositorioAluno.size(); i++) {
-            if (this.repositorioAluno.get(i).getNome().equalsIgnoreCase(nome)) {
+            if (this.repositorioAluno.get(i).getCpf().equalsIgnoreCase(cpf)) {
                 aluno = this.repositorioAluno.get(i);
             }
         }
@@ -36,5 +38,10 @@ public class RepositorioAluno {
 
     public boolean existe (Aluno aluno) {
         return this.repositorioAluno.contains(aluno);
+    }
+
+    public boolean adicionarMarcacao(String semestre, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+        Cronograma cronograma = aluno.buscarCronograma(semestre);
+        return cronograma.adicionar(codigoTarefa, dataTermino);
     }
 }

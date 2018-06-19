@@ -11,18 +11,18 @@ import java.util.ArrayList;
 
 public class Disciplina{
 
-  private String nome;
-  private Professor professor;
-  private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
-  private LocalDate dataInicio;
-  private LocalDate dataFim;
-  private DayOfWeek diaAula;
-  private int duracaoAula;
-  private int cargaHoraria;
-  private ArrayList<Tarefa> tarefas = new ArrayList<Tarefa>();
+    private String nome;
+    private Professor professor;
+    private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
+    private DayOfWeek diaAula;
+    private int duracaoAula;
+    private int cargaHoraria;
+    private ArrayList<Tarefa> tarefas = new ArrayList<Tarefa>();
 
 
-  public Disciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula,int cargaHoraria) {
+    public Disciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula,int cargaHoraria) {
     this.setNome(nome);
     this.setDataInicio(dataInicio);
     this.setDiaAula(diaAula);
@@ -30,103 +30,115 @@ public class Disciplina{
     this.setCargaHoraria(cargaHoraria);
     this.setDataFim(this.gerarDataFim());
     }
-  
-  public Disciplina() {
 
-  }
+    public Disciplina() {
 
-  public int getDuracaoAula() {
+    }
+
+    public int getDuracaoAula() {
         return this.duracaoAula;
     }
 
-  public void setDuracaoAula(int duracaoAula) {
+    public void setDuracaoAula(int duracaoAula) {
         this.duracaoAula = duracaoAula;
     }
 
-  public String getNome() {
+    public String getNome() {
     return nome;
-  }
+    }
 
-  public Professor getProfessor() {
-  return professor;
- }
-  
-  public ArrayList getAlunos() {
+    public Professor getProfessor() {
+    return professor;
+    }
+
+    public ArrayList getAlunos() {
     return alunos;
-  }
+    }
 
-  public LocalDate getDataInicio() {
+    public LocalDate getDataInicio() {
     return dataInicio;
-  }
+    }
 
-  public DayOfWeek getDiaAula() {
+    public DayOfWeek getDiaAula() {
     return diaAula;
-  }
+    }
 
-  public int getCargaHoraria() {
+    public int getCargaHoraria() {
     return this.cargaHoraria;
-  }
+    }
 
-  public void setNome(String nome) {
+    public void setNome(String nome) {
     this.nome = nome;
-  }
+    }
 
-  public void setProfessor(Professor professor) {
+    public void setProfessor(Professor professor) {
     this.professor = professor;
-  }
+    }
 
-  public void setAlunos(ArrayList alunos) {
-	this.alunos = alunos;
-  }
+    public void setAlunos(ArrayList alunos) {
+    this.alunos = alunos;
+    }
 
-  public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
     this.dataInicio = dataInicio;
-  }
+    }
 
-  public void setDataFim(LocalDate dataFim) {
+    public void setDataFim(LocalDate dataFim) {
     this.dataFim = dataFim;
-  }
+    }
 
-  public LocalDate getDataFim() {
+    public LocalDate getDataFim() {
       return dataFim;
-  }
+    }
 
-  public void setDiaAula(DayOfWeek diaAula) {
+    public void setDiaAula(DayOfWeek diaAula) {
     this.diaAula = diaAula;
-  }
+    }
 
-  public void setCargaHoraria(int cargaHoraria) {
+    public void setCargaHoraria(int cargaHoraria) {
     this.cargaHoraria = cargaHoraria;
-  }
-		  
-  public boolean adicionarAluno(Aluno aluno) {
+    }
+
+    public boolean adicionarAluno(Aluno aluno) {
     boolean retorno = false;
     if (aluno != null) {
       this.alunos.add(aluno);
       retorno = true;
     }
     return retorno;
-  }
+    }
 
-  public boolean adicionarProfessor(Professor professor) {
+    public boolean adicionarProfessor(Professor professor) {
     boolean retorno = false;
     if (professor != null) {
       this.professor = professor;
       retorno = true;
     }
     return retorno;
-  }
-  
-  public boolean adicionarTarefa(Tarefa tarefa) {
+    }
+
+    public boolean adicionarTarefa(Tarefa tarefa) {
     boolean retorno = false;
     if (tarefa != null) {
         this.tarefas.add(tarefa);
         retorno = true;
     }
     return retorno;
-}
-  
-  public LocalDate gerarDataFim(){
+    }
+
+    public Tarefa buscarTarefa(int codigoTarefa){
+        Tarefa tarefa = null;
+        if(codigoTarefa >= 0){
+            for(int i = 0; i < tarefas.size(); i++){
+                if(tarefas.get(i).getCodigoTarefa() == codigoTarefa){
+                    tarefa = tarefas.get(i);
+                }
+            }
+        }
+        return tarefa;
+    }
+
+    public LocalDate gerarDataFim(){
       LocalDate dataFim = null;
       LocalDate dataInicioP = this.getDataInicio();
       DayOfWeek diaAula = this.getDiaAula();
@@ -145,7 +157,7 @@ public class Disciplina{
       return dataFim;
     }
 
-  public int gerarCargaHorariaRestante(){
+    public int gerarCargaHorariaRestante(){
       int cargaHorariaRestante = 0;
       LocalDate dataInicioP = this.getDataInicio();
       LocalDate hoje = LocalDate.now();
@@ -171,9 +183,9 @@ public class Disciplina{
       else cargaHorariaRestante = cargaHoraria;
 
       return cargaHorariaRestante;
-  }
+    }
 
-  public String toString() {
+    public String toString() {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
       return "Nome da Disciplina: " + this.getNome() + "" + "\nProfessor:" + this.getProfessor().getNome()+ "\n"
           + "Inicio da disciplina: " + this.getDataInicio().format(formatter) + "\nData termino da disciplina: "
@@ -181,7 +193,7 @@ public class Disciplina{
           + "\nCarga Horaria: " + this.getCargaHoraria();
     }
 
-  public boolean equals(Disciplina obj) {
+    public boolean equals(Disciplina obj) {
         boolean retorno = false;
         if (obj.getAlunos() != null && obj.getDataFim() != null && obj.getDataInicio() != null
             && obj.getDiaAula() != null && obj.getNome() != null && obj.getProfessor() != null) {

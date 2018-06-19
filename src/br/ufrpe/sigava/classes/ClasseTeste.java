@@ -62,8 +62,8 @@ public class ClasseTeste {
 	System.out.println("Impressao do teste Disciplina");
 	Disciplina disciplina1 = new Disciplina("POO", dataComeco, diaAula, 4,60);
 	Pessoa professor = new Pessoa();
-	professor.setNome("Leandro");
-	disciplina1.setProfessor(professor);
+		professor.setNome("Leandro");
+		disciplina1.setProfessor(professor);
 	
 	Disciplina disciplina2 = new Disciplina();
 	disciplina2.setNome("Discreta");

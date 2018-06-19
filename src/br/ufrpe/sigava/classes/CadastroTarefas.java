@@ -4,10 +4,10 @@ import br.ufrpe.sigava.repositorios.IRepositorioTarefa;
 
 import java.time.LocalDate;
 
-public class CadastroTarefa {
+public class CadastroTarefas {
     private IRepositorioTarefa repositorioTarefa;
 
-    public CadastroTarefa(IRepositorioTarefa instanciaRepositorio){
+    public CadastroTarefas(IRepositorioTarefa instanciaRepositorio){
         this.repositorioTarefa = instanciaRepositorio;
     }
 
@@ -16,12 +16,9 @@ public class CadastroTarefa {
         if (tarefa == null){
             retorno = false;
         }
-        if (!this.repositorioTarefa.existe(tarefa)) {
+        else if (!this.repositorioTarefa.existe(tarefa)) {
             this.repositorioTarefa.adicionar(tarefa);
             retorno = true;
-        }
-        else{
-            retorno = false;
         }
         return retorno;
     }

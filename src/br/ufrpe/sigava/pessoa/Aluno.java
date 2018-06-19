@@ -2,6 +2,7 @@ package br.ufrpe.sigava.pessoa;
 
 import br.ufrpe.sigava.classes.Cronograma;
 import br.ufrpe.sigava.classes.Disciplina;
+import br.ufrpe.sigava.classes.Marcacao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
