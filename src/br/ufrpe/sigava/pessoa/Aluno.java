@@ -2,17 +2,20 @@ package br.ufrpe.sigava.pessoa;
 
 import br.ufrpe.sigava.classes.Cronograma;
 import br.ufrpe.sigava.classes.Disciplina;
-import br.ufrpe.sigava.classes.Marcacao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Aluno extends Pessoa{
-    private ArrayList<Cronograma> cronogramas = new ArrayList<Cronograma>();
-    private ArrayList<Disciplina> disciplinas = new ArrayList<Disciplina>();
+public  class Aluno extends Pessoa{
+    private ArrayList <Cronograma> cronogramas = new ArrayList<Cronograma>();
+    private ArrayList <Disciplina> disciplinas = new ArrayList<Disciplina>();
 
     public Aluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
         super(nome, email, sexo, dataNascimento, senha, cpf);
+    }
+
+    public ArrayList <Cronograma> getCronogramas() {
+        return cronogramas;
     }
 
     public boolean adicionarDisciplina(Disciplina disciplina){
@@ -48,7 +51,7 @@ public class Aluno extends Pessoa{
     public Cronograma buscarCronograma(String semestre){
         Cronograma cronograma = null;
         for (int i = 0; i < cronogramas.size(); i++){
-            if (this.cronogramas.get(i).getSemestre().equals(semestre)){
+            if (this.cronogramas.get(i).getNome().equals(semestre)){
                 cronograma = this.cronogramas.get(i);
             }
         }

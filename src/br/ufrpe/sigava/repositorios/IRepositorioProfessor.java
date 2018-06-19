@@ -55,6 +55,8 @@ public interface IRepositorioProfessor {
      */
     public Professor buscar (String nome);
 
+    public Professor buscarCpf (String cpf);
+
     /**
      * Verifica se o professor está no repositório
      *

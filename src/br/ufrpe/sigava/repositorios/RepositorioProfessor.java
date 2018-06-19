@@ -37,6 +37,18 @@ public class RepositorioProfessor implements IRepositorioProfessor {
         }
         return professor;
     }
+
+    public Professor buscarCpf (String cpf){
+        Professor professor = null;
+        for (int i = 0; i < this.repositorioProfessor.size(); i++) {
+            if (this.repositorioProfessor.get(i).getCpf().equalsIgnoreCase(cpf)){
+                professor = this.repositorioProfessor.get(i);
+            }
+        }
+        return professor;
+    }
+
+
     @Override
     public boolean existe (Professor professor){
         return this.repositorioProfessor.contains(professor);

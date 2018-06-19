@@ -5,7 +5,7 @@ public class Login {
     private String usuario;
     private String senha;
 
-    public void Login (String usuario, String senha){
+    public Login (String usuario, String senha){
         setSenha(senha);
         setUsuario(usuario);
     }
@@ -19,9 +19,7 @@ public class Login {
     }
 
     public boolean realizarLogin(String user, String password){
-        Login logar = null;
-        logar.setSenha(password);
-        logar.setUsuario(user);
+        Login logar = new Login(user,password);
         return realizarLogin(logar);
     }
 

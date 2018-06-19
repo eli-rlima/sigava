@@ -19,4 +19,7 @@ public interface IRepositorioAluno {
 
     boolean existe (Aluno aluno);
 
+
+    boolean existeCronograma (Aluno aluno, String nomeCronograma);
+
 }

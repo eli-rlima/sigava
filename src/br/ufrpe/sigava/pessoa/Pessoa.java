@@ -1,21 +1,27 @@
 package br.ufrpe.sigava.pessoa;
 
+import br.ufrpe.sigava.classes.Login;
+
 import java.time.LocalDate;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
     private String email;
     private char sexo;
     private LocalDate dataNascimento;
-    private String senha;
     private String cpf;
+    private Login login;
+
+    public Login getLogin() {
+        return login;
+    }
 
     public Pessoa(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
         this.setNome(nome);
         this.setEmail(email);
         this.setSexo(sexo);
         this.setDataNascimento(dataNascimento);
-        this.setSenha(senha);
+        this.login = new Login(email,senha);
         this.cpf = cpf;
     }
     public Pessoa(){}
@@ -55,14 +61,6 @@ public class Pessoa {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String toString() {

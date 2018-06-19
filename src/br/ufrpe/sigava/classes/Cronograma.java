@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 public class Cronograma {
     private ArrayList<Marcacao> marcacoes = new ArrayList<Marcacao>();
-    private String semestre;
+    private String nome;
 
-    public Cronograma(String semestre){ this.setSemestre(semestre);}
+    public Cronograma(String nome){ this.setNome(nome);}
 
     public boolean adicionar(Marcacao marcacao){
         return marcacoes.add(marcacao);
@@ -22,12 +22,12 @@ public class Cronograma {
         return marcacoes.remove(marcacao);
     }
 
-    public String getSemestre() {
-        return semestre;
+    public String getNome() {
+        return nome;
     }
 
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Marcacao criarMarcacao(Tarefa tarefa, LocalDate dataTerminoTarefa){
