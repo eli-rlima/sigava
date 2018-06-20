@@ -7,9 +7,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RepositorioDisciplina implements IRepositorioDisciplina {
-    private ArrayList<Disciplina> repositorioDisciplina = new ArrayList<Disciplina>();
+    private ArrayList<Disciplina> repositorioDisciplina;
+    private static RepositorioDisciplina instance;
 
-    public RepositorioDisciplina(){}
+    private RepositorioDisciplina(){
+        this.repositorioDisciplina = new ArrayList<Disciplina>();
+    }
+
+    public static RepositorioDisciplina getInstance(){
+        if (instance == null){
+            instance = new RepositorioDisciplina();
+        }
+        return instance;
+    }
+
     @Override
     public boolean adicionar(Disciplina disciplina){
         return this.repositorioDisciplina.add(disciplina);

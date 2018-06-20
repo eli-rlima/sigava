@@ -7,9 +7,18 @@ import java.util.ArrayList;
 
 
 public class RepositorioProfessor implements IRepositorioProfessor {
-    private ArrayList<Professor> repositorioProfessor = new ArrayList<Professor>();
+    private ArrayList<Professor> repositorioProfessor;
+    private static RepositorioProfessor instance;
 
-    public RepositorioProfessor(){
+    private RepositorioProfessor(){
+        repositorioProfessor = new ArrayList<Professor>();
+    }
+
+    public static RepositorioProfessor getInstance(){
+        if (instance == null){
+            instance = new RepositorioProfessor();
+        }
+        return instance;
     }
 
     @Override

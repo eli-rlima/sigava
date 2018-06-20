@@ -9,9 +9,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RepositorioAluno implements IRepositorioAluno{
-    private ArrayList<Aluno> repositorioAluno = new ArrayList<Aluno>();
+    private ArrayList<Aluno> repositorioAluno;
+    private static RepositorioAluno instance;
 
-    public RepositorioAluno(){}
+    private RepositorioAluno(){
+        this.repositorioAluno = new ArrayList<Aluno>();
+    }
+
+    public static RepositorioAluno getInstance(){
+        if (instance == null){
+            instance = new RepositorioAluno();
+        }
+        return instance;
+    }
 
     @Override
     public boolean adicionar (Aluno aluno){

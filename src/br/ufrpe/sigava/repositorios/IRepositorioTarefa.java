@@ -60,4 +60,5 @@ public interface IRepositorioTarefa {
      * @return true ou false, caso seja encontrada true, caso não false.
      */
      boolean existe(Tarefa tarefa);
+
 }

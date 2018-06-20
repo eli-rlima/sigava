@@ -1,16 +1,15 @@
 package br.ufrpe.sigava.classes;
 
 import br.ufrpe.sigava.pessoa.Professor;
-import br.ufrpe.sigava.repositorios.IRepositorioProfessor;
-
+import br.ufrpe.sigava.repositorios.RepositorioProfessor;
 import java.time.LocalDate;
 
 
 public class CadastroProfessor {
-    private IRepositorioProfessor repositorioProfessor;
+    private RepositorioProfessor repositorioProfessor;
 
-    public CadastroProfessor (IRepositorioProfessor instanciaRepositorio){
-        this.repositorioProfessor = instanciaRepositorio;
+    public CadastroProfessor (){
+        this.repositorioProfessor = repositorioProfessor.getInstance();
     }
 
     public boolean cadastrar (Professor professor){

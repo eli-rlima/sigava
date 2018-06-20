@@ -2,16 +2,16 @@ package br.ufrpe.sigava.classes;
 
 import br.ufrpe.sigava.pessoa.Aluno;
 import br.ufrpe.sigava.pessoa.Professor;
-import br.ufrpe.sigava.repositorios.IRepositorioDisciplina;
+import br.ufrpe.sigava.repositorios.RepositorioDisciplina;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class CadastroDisciplinas {
-    private IRepositorioDisciplina repositorioDisciplina;
+    private RepositorioDisciplina repositorioDisciplina;
 
-    public CadastroDisciplinas(IRepositorioDisciplina instanciaRepositorio){
-        this.repositorioDisciplina = instanciaRepositorio;
+    public CadastroDisciplinas(){
+        this.repositorioDisciplina = RepositorioDisciplina.getInstance();
     }
 
     public boolean cadastrar(Disciplina disciplina){

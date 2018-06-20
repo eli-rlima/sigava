@@ -1,14 +1,14 @@
 package br.ufrpe.sigava.classes;
 
-import br.ufrpe.sigava.repositorios.IRepositorioTarefa;
+import br.ufrpe.sigava.repositorios.RepositorioTarefa;
 
 import java.time.LocalDate;
 
 public class CadastroTarefas {
-    private IRepositorioTarefa repositorioTarefa;
+    private RepositorioTarefa repositorioTarefa;
 
-    public CadastroTarefas(IRepositorioTarefa instanciaRepositorio){
-        this.repositorioTarefa = instanciaRepositorio;
+    public CadastroTarefas(){
+        this.repositorioTarefa = RepositorioTarefa.getInstance();
     }
 
     public boolean cadastrar(Tarefa tarefa){

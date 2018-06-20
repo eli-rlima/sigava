@@ -7,7 +7,22 @@ import java.util.ArrayList;
 
 public class RepositorioTarefa implements IRepositorioTarefa {
 
-    private ArrayList <Tarefa> repositorioTarefas = new ArrayList<Tarefa>();
+    private ArrayList <Tarefa> repositorioTarefas;
+    private static RepositorioTarefa instance;
+
+    private RepositorioTarefa(){
+        this.repositorioTarefas = new ArrayList<Tarefa>();
+    }
+
+
+    public static RepositorioTarefa getInstance (){
+        if (instance == null){
+            instance = new RepositorioTarefa();
+        }
+        return instance;
+    }
+
+
 
     @Override
     public boolean adicionar(Tarefa tarefa){
