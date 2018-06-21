@@ -10,16 +10,16 @@ public class Login {
         setUsuario(usuario);
     }
 
-    public boolean realizarLogin (Login senha){
+    public boolean realizarLogin (Login login){
         boolean retorno = false;
-        if (senha.getSenha().equals(this.getSenha()) && senha.getUsuario().equals(this.getUsuario())){
+        if (login.getSenha().equals(this.getSenha()) && login.getUsuario().equalsIgnoreCase(this.getUsuario())){
             retorno = true;
         }
         return retorno;
     }
 
-    public boolean realizarLogin(String user, String password){
-        Login logar = new Login(user,password);
+    public boolean realizarLogin(String usuario, String senha){
+        Login logar = new Login(usuario,senha);
         return realizarLogin(logar);
     }
 
