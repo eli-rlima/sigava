@@ -1,4 +1,4 @@
-package br.ufrpe.sigava.classes;
+package br.ufrpe.sigava.negocio.beans;
 
 public class Login {
 

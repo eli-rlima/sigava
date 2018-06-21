@@ -1,7 +1,6 @@
-package br.ufrpe.sigava.classes;
+package br.ufrpe.sigava.negocio.beans;
 
 import br.ufrpe.sigava.pessoa.Aluno;
-import br.ufrpe.sigava.pessoa.Pessoa;
 import br.ufrpe.sigava.pessoa.Professor;
 
 import java.time.DayOfWeek;
