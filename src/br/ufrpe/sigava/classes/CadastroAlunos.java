@@ -13,7 +13,7 @@ public class CadastroAlunos {
 
     public boolean cadastrar(Aluno aluno){
         boolean retorno = false;
-        if(aluno == null){
+        if(aluno == null){ //TODO
             retorno = false;
         }
         else if(!repositorioAluno.existe(aluno)){
@@ -22,30 +22,20 @@ public class CadastroAlunos {
         return retorno;
     }
 
-    public boolean cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+    public boolean cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
         boolean retorno = false;
-        if(nome != null){
-            if(email != null){
-                if(sexo == 'm' || sexo == 'f'){
-                    if(dataNascimento != null){
-                        if(senha != null){
-                            if(cpf != null){
-                                Aluno aluno = repositorioAluno.buscar(cpf);
-                                if(aluno == null){
-                                    retorno = repositorioAluno.adicionar(nome, email, sexo, dataNascimento, senha, cpf);
-                                }
-                            }
-                        }
-                    }
-                }
+        if (nome != null && email != null && sexo == 'm' || sexo == 'f' && dataNascimento != null && senha != null &&
+                cpf != null) { //TODO
+            Aluno aluno = repositorioAluno.buscar(cpf);
+            if (aluno == null) { //TODO
+                retorno = repositorioAluno.adicionar(nome, email, sexo, dataNascimento, senha, cpf);
             }
         }
         return retorno;
     }
-
     public boolean descadastrar(Aluno aluno){
         boolean retorno = false;
-         if(aluno != null && repositorioAluno.existe(aluno)){
+         if(aluno != null && repositorioAluno.existe(aluno)){ //TODO
             retorno = repositorioAluno.remover(aluno);
         }
         return retorno;
@@ -53,7 +43,7 @@ public class CadastroAlunos {
 
     public Aluno procurar (String cpf){
         Aluno aluno = null;
-        if(cpf != null){
+        if(cpf != null){ //TODO
             aluno = repositorioAluno.buscar(cpf);
         }
         return aluno;
@@ -61,7 +51,7 @@ public class CadastroAlunos {
 
     public boolean existe(Aluno aluno){
         boolean retorno = false;
-        if(aluno != null){
+        if(aluno != null){ //TODO
             retorno = repositorioAluno.existe(aluno);
         }
         return retorno;
@@ -72,11 +62,12 @@ public class CadastroAlunos {
         Marcacao marcacao = null;
         Tarefa tarefa = null;
 
-        if(nomeCronograma != null){
+        if(nomeCronograma != null){ //TODO
             if(repositorioAluno.existe(aluno) &&  repositorioAluno.existeCronograma(aluno,nomeCronograma)){
-                if (codigoTarefa >= 0 && aluno.buscarDisciplina(nomeDisciplina) != null && aluno.buscarDisciplina(nomeDisciplina).buscarTarefa(codigoTarefa) != null) {
+                if (codigoTarefa >= 0 && aluno.buscarDisciplina(nomeDisciplina) != null &&
+                        aluno.buscarDisciplina(nomeDisciplina).buscarTarefa(codigoTarefa) != null) { //TODO
                     tarefa = aluno.buscarDisciplina(nomeDisciplina).buscarTarefa(codigoTarefa);
-                    if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){
+                    if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){ //TODO
                         marcacao.setCodigoTarefa(tarefa.getCodigoTarefa());
                         marcacao.setDataTermino(dataTermino);
                         retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino);

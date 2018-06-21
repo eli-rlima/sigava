@@ -16,10 +16,10 @@ public class CadastroDisciplinas {
 
     public boolean cadastrar(Disciplina disciplina){
         boolean retorno = false;
-        if (disciplina == null){
+        if (disciplina == null){ //TODO
             retorno = false;
         }
-        else if (!this.repositorioDisciplina.existe(disciplina)) {
+        else if (!this.repositorioDisciplina.existe(disciplina)) { //TODO
             this.repositorioDisciplina.adicionar(disciplina);
             retorno = true;
         }
@@ -28,24 +28,16 @@ public class CadastroDisciplinas {
 
     public boolean cadastrar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
         boolean retorno = false;
-        if (nome != null){
-            if (dataInicio != null){
-                if (diaAula != null){
-                    if (duracaoAula > 0){
-                        if (cargaHoraria > 0){
-                            retorno = this.repositorioDisciplina.adicionar(nome, dataInicio, diaAula, duracaoAula,
-                                    cargaHoraria);
-                        }
-                    }
-                }
-            }
+        if (nome != null && dataInicio != null && diaAula != null && duracaoAula > 0 && cargaHoraria > 0){ //TODO
+            retorno = this.repositorioDisciplina.adicionar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
+
         }
         return retorno;
     }
 
     public boolean descadastrar(Disciplina disciplina){
         boolean retorno = false;
-        if(disciplina != null){
+        if(disciplina != null){ //TODO
             this.repositorioDisciplina.remover(disciplina);
             retorno = true;
         }
@@ -54,7 +46,7 @@ public class CadastroDisciplinas {
 
     public Disciplina procurar(String nome){
         Disciplina disciplina = null;
-        if(nome != null){
+        if(nome != null){ //TODO
             disciplina = this.repositorioDisciplina.buscar(nome);
         }
         return disciplina;
@@ -62,7 +54,7 @@ public class CadastroDisciplinas {
 
     public boolean existe(Disciplina disciplina){
         boolean retorno = false;
-        if (disciplina != null){
+        if (disciplina != null){ //TODO
             retorno = this.repositorioDisciplina.existe(disciplina);
         }
         return retorno;
@@ -71,10 +63,10 @@ public class CadastroDisciplinas {
     public boolean cadastrarProfessor(String nome, Professor professor){
         boolean retorno = false;
         Disciplina disciplina = null;
-        if (nome != null){
+        if (nome != null){ //TODO
             disciplina = this.repositorioDisciplina.buscar(nome);
         }
-        if (disciplina != null && professor != null){
+        if (disciplina != null && professor != null){ //TODO
             disciplina.adicionarProfessor(professor);
             retorno = true;
         }
@@ -84,10 +76,10 @@ public class CadastroDisciplinas {
     public boolean cadastrarAluno(String nome, Aluno aluno){
         boolean retorno = false;
         Disciplina disciplina = null;
-        if (nome != null){
+        if (nome != null){ //TODO
             disciplina = this.repositorioDisciplina.buscar(nome);
         }
-        if (disciplina != null && aluno != null){
+        if (disciplina != null && aluno != null){ //TODO
             disciplina.adicionarAluno(aluno);
             retorno = true;
         }
@@ -97,10 +89,10 @@ public class CadastroDisciplinas {
     public boolean cadastrarTarefa(String nome, Tarefa tarefa){
         boolean retorno = false;
         Disciplina disciplina = null;
-        if (nome != null){
+        if (nome != null){ //TODO
             disciplina = this.repositorioDisciplina.buscar(nome);
         }
-        if (disciplina != null && tarefa != null){
+        if (disciplina != null && tarefa != null){ //TODO
             disciplina.adicionarTarefa(tarefa);
             retorno = true;
         }

@@ -56,8 +56,8 @@ public class RepositorioAluno implements IRepositorioAluno{
     }
 
     @Override
-    public boolean adicionarMarcacao(String semestre, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
-        Cronograma cronograma = aluno.buscarCronograma(semestre);
+    public boolean adicionarMarcacao(String nome, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+        Cronograma cronograma = aluno.buscarCronograma(nome);
         return cronograma.adicionar(codigoTarefa, dataTermino);
     }
 

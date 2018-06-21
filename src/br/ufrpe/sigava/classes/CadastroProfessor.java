@@ -14,8 +14,8 @@ public class CadastroProfessor {
 
     public boolean cadastrar (Professor professor){
         boolean retorno = false;
-        if (professor != null && !repositorioProfessor.existe(professor)){
-            if (repositorioProfessor.adicionar(professor)){
+        if (professor != null && !repositorioProfessor.existe(professor)){ //TODO
+            if (repositorioProfessor.adicionar(professor)){//TODO
                 retorno = true;
             }
         }
@@ -25,11 +25,11 @@ public class CadastroProfessor {
     public boolean cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
         Professor professor = null;
         boolean retorno = false;
-        if (nome != null && email != null && senha != null && cpf != null){
-            if(sexo == 'm' || sexo == 'f'){
+        if (nome != null && email != null && senha != null && cpf != null){ //TODO
+            if(sexo == 'm' || sexo == 'f'){ //TODO
                 professor = repositorioProfessor.buscarCpf(cpf);
             }
-            if (professor == null){
+            if (professor == null){ //TODO
                  retorno = this.repositorioProfessor.adicionar(nome,email,sexo,dataNascimento,senha,cpf);
             }
         }
@@ -38,23 +38,23 @@ public class CadastroProfessor {
 
     public boolean descadastrar (Professor professor){
         boolean retorno = false;
-        if (professor != null && repositorioProfessor.existe(professor)){
+        if (professor != null && repositorioProfessor.existe(professor)){ //TODO
             retorno = repositorioProfessor.remover(professor);
         }
         return retorno;
     }
 
-    public Professor procurar (String nome){
+    public Professor procurar (String cpf){
         Professor professor = null;
-        if (nome != null){
-            professor = this.repositorioProfessor.buscar(nome);
+        if (cpf != null){ //TODO
+            professor = this.repositorioProfessor.buscarCpf(cpf);
         }
         return professor;
     }
 
     public boolean existe(Professor professor){
         boolean retorno = false;
-        if(professor != null){
+        if(professor != null){ //TODO
             retorno = this.repositorioProfessor.existe(professor);
         }
         return retorno;

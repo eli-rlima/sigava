@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface IRepositorioAluno {
+
     /**
      * Adiciona um aluno ao repositório aluno
      *
@@ -39,8 +40,8 @@ public interface IRepositorioAluno {
     /**
      * Adiciona a marcação referente a tarefa selecionada ao repositorio do marcaçoes no cronograma.
      *
-     * @param semestre
-     *          semestre a ser adicionada a marcação
+     * @param nome
+     *          nome do cronograma a ser adicionada a marcação
      * @param aluno
      *          referência do aluno
      * @param codigoTarefa
@@ -50,7 +51,7 @@ public interface IRepositorioAluno {
      *
      * @return true ou false, caso tenha sido adicionado true, caso não false.
      */
-    boolean adicionarMarcacao(String semestre, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
+    boolean adicionarMarcacao(String nome, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
 
     /**
      * Remove um aluno do repositório de alunos
