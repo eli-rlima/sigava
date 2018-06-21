@@ -1,6 +1,7 @@
 package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Cronograma;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.pessoa.Aluno;
 
 import java.time.LocalDate;
@@ -71,4 +72,9 @@ public class RepositorioAluno implements IRepositorioAluno{
         }
         return retorno;
     }
+
+    public ArrayList<Disciplina> listarDisciplinas (Aluno aluno){
+        return aluno.getDisciplinas();
+    }
+
 }

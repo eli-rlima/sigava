@@ -102,6 +102,8 @@ public class Disciplina{
         boolean retorno = false;
         if (aluno != null) {
               this.alunos.add(aluno);
+              aluno.adicionarDisciplina(this);  // certificar de quando um aluno entrar na disciplina,
+                                                // a disciplina esteja nos seus atributos.
               retorno = true;
         }
         return retorno;

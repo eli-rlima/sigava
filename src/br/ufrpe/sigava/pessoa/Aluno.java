@@ -18,6 +18,10 @@ public  class Aluno extends Pessoa{
         return cronogramas;
     }
 
+    public ArrayList<Disciplina> getDisciplinas(){
+        return disciplinas;
+    }
+
     public boolean adicionarDisciplina(Disciplina disciplina){
         return disciplinas.add(disciplina);
     }

@@ -30,40 +30,40 @@ public class ServidorSigava {
         return instance;
     }
 
-    public void cadastrarAluno(Aluno aluno){ //TODO excepcion
-        this.alunos.cadastrar(aluno);
+    public boolean cadastrarAluno(Aluno aluno){ //TODO excepcion
+       return this.alunos.cadastrar(aluno);
     }
 
     public Aluno buscarAluno(String cpf){
         return this.alunos.procurar(cpf);
     }
 
-    public void cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
-        this.alunos.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
+    public boolean cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+        return this.alunos.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
-    public void adicionarMarcacao(String nomeDisciplina, String nomeCronogram, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
-        this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronogram, aluno, codigoTarefa, dataTermino);
+    public boolean adicionarMarcacao(String nomeDisciplina, String nomeCronogram, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+        return this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronogram, aluno, codigoTarefa, dataTermino);
     }
 
-    public void descadastrarAluno(Aluno aluno){
-        this.alunos.descadastrar(aluno);
+    public boolean descadastrarAluno(Aluno aluno){
+        return this.alunos.descadastrar(aluno);
     }
 
     public boolean existeAluno(Aluno aluno){
         return this.alunos.existe(aluno);
     }
 
-    public void cadastrarDisciplina(Disciplina disciplina){
-        this.disciplinas.cadastrar(disciplina);
+    public boolean cadastrarDisciplina(Disciplina disciplina){
+        return this.disciplinas.cadastrar(disciplina);
     }
 
-    public void cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
-        this.disciplinas.cadastrar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
+    public boolean cadastrarDisciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){
+        return this.disciplinas.cadastrar(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
     }
 
-    public void descadastrarDisciplina(Disciplina disciplina){
-        this.disciplinas.descadastrar(disciplina);
+    public boolean descadastrarDisciplina(Disciplina disciplina){
+        return this.disciplinas.descadastrar(disciplina);
     }
 
     public Disciplina buscarDisciplina(String nome){
@@ -74,28 +74,28 @@ public class ServidorSigava {
         return this.disciplinas.existe(disciplina);
     }
 
-    public void cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor){
-        this.disciplinas.cadastrarProfessor(nomeDisciplina, professor);
+    public boolean cadastrarProfessorDisciplina(String nomeDisciplina, Professor professor){
+        return this.disciplinas.cadastrarProfessor(nomeDisciplina, professor);
     }
 
-    public void cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno){
-        this.disciplinas.cadastrarAluno(nomeDisciplina, aluno);
+    public boolean cadastrarAlunoDisciplina(String nomeDisciplina, Aluno aluno){
+        return this.disciplinas.cadastrarAluno(nomeDisciplina, aluno);
     }
 
-    public void cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa){
-        this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
+    public boolean cadastrarTarefaDisciplina(String nomeDisciplina, Tarefa tarefa){
+        return this.disciplinas.cadastrarTarefa(nomeDisciplina, tarefa);
     }
 
-    public void cadastrarProfessor(Professor professor){
-        this.professores.cadastrar(professor);
+    public boolean cadastrarProfessor(Professor professor){
+        return this.professores.cadastrar(professor);
     }
 
-    public void cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
-        this.professores.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
+    public boolean cadastrarProfessor(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf){
+        return this.professores.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
-    public void descadastrarProfessor(Professor professor){
-        this.professores.descadastrar(professor);
+    public boolean descadastrarProfessor(Professor professor){
+        return this.professores.descadastrar(professor);
     }
 
     public Professor buscarProfessor(String cpf){
@@ -106,16 +106,16 @@ public class ServidorSigava {
         return this.professores.existe(professor);
     }
 
-    public void cadastrarTarefa(Tarefa tarefa){
-        this.tarefas.cadastrar(tarefa);
+    public boolean cadastrarTarefa(Tarefa tarefa){
+        return this.tarefas.cadastrar(tarefa);
     }
 
-    public void cadastrarTarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa){
-        this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa);
+    public boolean cadastrarTarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa){
+        return this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa);
     }
 
-    public void descadastrarTarefa(Tarefa tarefa){
-        this.tarefas.descadastrar(tarefa);
+    public boolean descadastrarTarefa(Tarefa tarefa){
+        return this.tarefas.descadastrar(tarefa);
     }
 
     public Tarefa buscarTarefa(int codigo){

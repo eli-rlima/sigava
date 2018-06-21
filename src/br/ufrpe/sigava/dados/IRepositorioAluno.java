@@ -1,8 +1,10 @@
 package br.ufrpe.sigava.dados;
 
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.pessoa.Aluno;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface IRepositorioAluno {
 
@@ -92,5 +94,14 @@ public interface IRepositorioAluno {
      * @return true ou false, caso tenha sido encontrado true, caso não false.
      */
     boolean existeCronograma (Aluno aluno, String nomeCronograma);
+
+    /**
+     * Retorna as disciplinas que o aluno está cadastrado.
+     * @param aluno
+     *          Referência de aluno.
+     * @return
+     *      retorna um arraylist de disciplinas.
+     */
+    ArrayList<Disciplina> listarDisciplinas (Aluno aluno);
 
 }
