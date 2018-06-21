@@ -23,12 +23,12 @@ public class Disciplina{
 
 
     public Disciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula,int cargaHoraria) {
-    this.setNome(nome);
-    this.setDataInicio(dataInicio);
-    this.setDiaAula(diaAula);
-    this.setDuracaoAula(duracaoAula);
-    this.setCargaHoraria(cargaHoraria);
-    this.setDataFim(this.gerarDataFim());
+        this.setNome(nome);
+        this.setDataInicio(dataInicio);
+        this.setDiaAula(diaAula);
+        this.setDuracaoAula(duracaoAula);
+        this.setCargaHoraria(cargaHoraria);
+        this.setDataFim(this.gerarDataFim());
     }
 
     public Disciplina() {
@@ -100,12 +100,42 @@ public class Disciplina{
     }
 
     public boolean adicionarAluno(Aluno aluno) {
-    boolean retorno = false;
-    if (aluno != null) {
-      this.alunos.add(aluno);
-      retorno = true;
+        boolean retorno = false;
+        if (aluno != null) {
+              this.alunos.add(aluno);
+              retorno = true;
+        }
+        return retorno;
     }
-    return retorno;
+
+    public boolean removerAluno(Aluno aluno) {
+        boolean retorno = false;
+        if (aluno != null) { //TODO
+            this.alunos.remove(aluno);
+            retorno = true;
+        }
+        return retorno;
+    }
+
+    public Aluno procurarAluno(String cpf) {
+        boolean retorno = false;
+        Aluno aluno = null;
+        if (cpf != null) { //TODO
+            for (int i = 0; i < alunos.size(); i++) {
+                if (alunos.get(i).getCpf().equals(cpf)){ //TODO
+                    aluno = alunos.get(i);
+                }
+            }
+        }
+        return aluno;
+    }
+
+    public boolean existeAluno(Aluno aluno){
+        boolean retorno = false;
+        if(aluno != null){ //TODO
+            retorno = this.alunos.contains(aluno);
+        }
+        return retorno;
     }
 
     public boolean adicionarProfessor(Professor professor) {
@@ -126,16 +156,32 @@ public class Disciplina{
     return retorno;
     }
 
-    public Tarefa buscarTarefa(int codigoTarefa){
+    public boolean removerTarefa(Tarefa tarefa){
+        boolean retorno = false;
+        if(tarefa != null){ //TODO
+            retorno = this.tarefas.remove(tarefa);
+        }
+        return retorno;
+    }
+
+    public Tarefa procurarTarefa(int codigoTarefa){
         Tarefa tarefa = null;
-        if(codigoTarefa >= 0){
+        if(codigoTarefa >= 0){ //TODO
             for(int i = 0; i < tarefas.size(); i++){
-                if(tarefas.get(i).getCodigoTarefa() == codigoTarefa){
+                if(tarefas.get(i).getCodigoTarefa() == codigoTarefa){ //TODO
                     tarefa = tarefas.get(i);
                 }
             }
         }
         return tarefa;
+    }
+
+    public boolean existeTarefa(Tarefa tarefa){
+        boolean retorno = false;
+        if(tarefa != null){ //TODO
+            retorno = this.tarefas.contains(tarefa);
+        }
+        return retorno;
     }
 
     public LocalDate gerarDataFim(){
@@ -215,5 +261,4 @@ public class Disciplina{
 
         return retorno;
       }
-
 }

@@ -65,8 +65,8 @@ public class CadastroAlunos {
         if(nomeCronograma != null){ //TODO
             if(repositorioAluno.existe(aluno) &&  repositorioAluno.existeCronograma(aluno,nomeCronograma)){
                 if (codigoTarefa >= 0 && aluno.buscarDisciplina(nomeDisciplina) != null &&
-                        aluno.buscarDisciplina(nomeDisciplina).buscarTarefa(codigoTarefa) != null) { //TODO
-                    tarefa = aluno.buscarDisciplina(nomeDisciplina).buscarTarefa(codigoTarefa);
+                        aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa) != null) { //TODO
+                    tarefa = aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa);
                     if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){ //TODO
                         marcacao.setCodigoTarefa(tarefa.getCodigoTarefa());
                         marcacao.setDataTermino(dataTermino);
