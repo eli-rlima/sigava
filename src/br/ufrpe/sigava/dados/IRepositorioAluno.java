@@ -1,9 +1,8 @@
-package br.ufrpe.sigava.repositorios;
+package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.pessoa.Aluno;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public interface IRepositorioAluno {
 

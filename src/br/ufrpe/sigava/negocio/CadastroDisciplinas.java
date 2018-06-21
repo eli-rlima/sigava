@@ -1,8 +1,10 @@
-package br.ufrpe.sigava.classes;
+package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.pessoa.Aluno;
 import br.ufrpe.sigava.pessoa.Professor;
-import br.ufrpe.sigava.repositorios.RepositorioDisciplina;
+import br.ufrpe.sigava.dados.RepositorioDisciplina;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

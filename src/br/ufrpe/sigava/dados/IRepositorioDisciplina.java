@@ -1,6 +1,6 @@
-package br.ufrpe.sigava.repositorios;
+package br.ufrpe.sigava.dados;
 
-import br.ufrpe.sigava.classes.Disciplina;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 

@@ -1,7 +1,9 @@
-package br.ufrpe.sigava.classes;
+package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.negocio.beans.Marcacao;
+import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.pessoa.Aluno;
-import br.ufrpe.sigava.repositorios.RepositorioAluno;
+import br.ufrpe.sigava.dados.RepositorioAluno;
 import java.time.LocalDate;
 
 public class CadastroAlunos {

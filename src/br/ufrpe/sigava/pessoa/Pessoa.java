@@ -1,6 +1,6 @@
 package br.ufrpe.sigava.pessoa;
 
-import br.ufrpe.sigava.classes.Login;
+import br.ufrpe.sigava.negocio.beans.Login;
 
 import java.time.LocalDate;
 

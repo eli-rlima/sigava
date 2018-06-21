@@ -1,8 +1,6 @@
-package br.ufrpe.sigava.repositorios;
+package br.ufrpe.sigava.dados;
 
-import br.ufrpe.sigava.classes.Cronograma;
-import br.ufrpe.sigava.classes.Disciplina;
-import br.ufrpe.sigava.classes.Marcacao;
+import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.pessoa.Aluno;
 
 import java.time.LocalDate;

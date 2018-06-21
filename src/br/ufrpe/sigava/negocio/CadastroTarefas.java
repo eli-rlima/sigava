@@ -1,6 +1,7 @@
-package br.ufrpe.sigava.classes;
+package br.ufrpe.sigava.negocio;
 
-import br.ufrpe.sigava.repositorios.RepositorioTarefa;
+import br.ufrpe.sigava.negocio.beans.Tarefa;
+import br.ufrpe.sigava.dados.RepositorioTarefa;
 
 import java.time.LocalDate;
 

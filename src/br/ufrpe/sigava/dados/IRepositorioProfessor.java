@@ -1,4 +1,4 @@
-package br.ufrpe.sigava.repositorios;
+package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.pessoa.Professor;
 
