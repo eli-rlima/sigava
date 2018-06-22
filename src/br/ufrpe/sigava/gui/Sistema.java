@@ -90,6 +90,7 @@ public class Sistema {
             nomeCrono = in.nextLine();
             in.nextLine();
             cronograma = new Cronograma(nomeCrono);
+            aluno.adicionarCronograma(cronograma);
 
             ver = servidorSigava.adicionarMarcacao(nomeDisc, nomeCrono, aluno, codigoTarefa, dataTermino);
 
