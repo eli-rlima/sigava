@@ -3,6 +3,7 @@ package br.ufrpe.sigava.negocio.beans.pessoa;
 import br.ufrpe.sigava.negocio.beans.Login;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Pessoa {
     private String nome;
@@ -64,12 +65,12 @@ public abstract class Pessoa {
     }
 
     public String toString() {
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "Nome = " + this.getNome() +
                 "\nE-mail = " + this.getEmail() +
                 "\nSexo = " + this.getSexo() +
-                "\nData de nascimento = " + this.getDataNascimento() +
-                "\nCPF = '" + this.getCpf();
+                "\nData de nascimento = " + this.getDataNascimento().format(formatter) +
+                "\nCPF = " + this.getCpf();
 
     }
 

@@ -34,7 +34,69 @@ public class Sistema {
         System.out.println("15\t - Listar Disciplinas");
         System.out.println("16\t - Listar Tarefas");
         System.out.println("17\t - Cronograma");
-        System.out.println("18\t - SAIR");
+        System.out.println("18\t - Associar Aluno - Disciplina");
+        System.out.println("19\t - Associar Professor - Disciplina");
+        System.out.println("20\t - SAIR");
+    }
+
+    private static void AssociarAlunoDisc(IServidorSigava servidorSigava){
+        Aluno aluno;
+        Disciplina disciplina;
+
+        listarDisciplinas(servidorSigava);
+        disciplina = selecionarDisciplina(servidorSigava);
+
+        listarAlunos(servidorSigava);
+        aluno = selecionarAluno(servidorSigava);
+
+        servidorSigava.cadastrarAlunoDisciplina(disciplina.getNome(), aluno);
+    }
+
+    private static Disciplina selecionarDisciplina(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        String nome;
+        Disciplina disciplina = null;
+
+        System.out.println("\nDigite o nome da disciplina selecionada: ");
+        nome = in.nextLine();
+
+        if (servidorSigava.buscarDisciplina(nome) == null){
+            System.out.println("Disciplina não encontrada!");
+        }
+        else {
+            disciplina = servidorSigava.buscarDisciplina(nome);
+        }
+        return disciplina;
+    }
+
+    private static Professor selecionarProfessor(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        String cpf;
+        Professor professor = null;
+
+        System.out.println("\nDigite o CPF do professor selecionado: ");
+        cpf = in.nextLine();
+
+        if (servidorSigava.buscarProfessor(cpf) == null){
+            System.out.println("Professor não encontrado!");
+        }
+        else {
+            professor = servidorSigava.buscarProfessor(cpf);
+        }
+        return professor;
+    }
+
+    private static void AssociarDiscProf(IServidorSigava servidorSigava){
+        Professor professor;
+        Disciplina disciplina;
+
+        servidorSigava.listarDisciplinas();
+        disciplina = selecionarDisciplina(servidorSigava);
+
+        servidorSigava.listarProfessores();
+        professor = selecionarProfessor(servidorSigava);
+
+        servidorSigava.cadastrarProfessorDisciplina(disciplina.getNome(),professor);
     }
 
     private static Aluno selecionarAluno(IServidorSigava servidorSigava){
@@ -42,7 +104,7 @@ public class Sistema {
         String cpf;
         Aluno aluno = null;
 
-        System.out.println("Digite o CPF do aluno selecionado: ");
+        System.out.println("\nDigite o CPF do aluno selecionado: ");
         cpf = in.nextLine();
 
         if (servidorSigava.buscarAluno(cpf) == null){
@@ -58,13 +120,16 @@ public class Sistema {
         Scanner in = new Scanner(System.in);
         String nomeCrono, nomeDisc, data;
         String dataR[];
-        LocalDate dataTermino;
         int numDis, codigoTarefa;
         Cronograma cronograma;
+        LocalDate dataTermino;
         boolean ver;
 
-        if (aluno == null || aluno.getDisciplinas() == null){
-            System.out.println("O aluno não tem disciplinas cadastradas ou não existe!");
+        if (aluno == null){
+            System.out.println("O aluno não existe!");
+        }
+        else if(aluno.getDisciplinas().size() < 1){
+            System.out.println("O aluno não tem disciplinas cadastradas");
         }
         else{
             for (int i = 0; i < aluno.getDisciplinas().size(); i++){
@@ -73,8 +138,8 @@ public class Sistema {
 
             System.out.println("Digite o número da disciplina: ");
             numDis = in.nextInt();
-
-            Disciplina disciplina =aluno.getDisciplinas().get(numDis);
+            
+            Disciplina disciplina = aluno.getDisciplinas().get(numDis-1);
             nomeDisc = disciplina.getNome();
 
             System.out.println(disciplina.ListarTarefas());
@@ -82,6 +147,7 @@ public class Sistema {
             System.out.println("Digite o código da tarefa: ");
             codigoTarefa = in.nextInt();
 
+            in.nextLine();
             System.out.println("Data de Término (dd/MM/aaaa): ");
             data = in.nextLine();
             dataR = data.split("/");
@@ -114,31 +180,39 @@ public class Sistema {
 
         System.out.println("Nome: ");
         nome = in.nextLine();
-        in.nextLine();
 
         System.out.println("Sexo (m ou f): ");
         sexo = in.next().charAt(0);
         in.nextLine();
 
-        System.out.println("Data de Nascimento (dd/MM/aaaa): ");
-        data = in.nextLine();
-        dataR = data.split("/");
-        dataNascimento = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+        do {
+            System.out.println("Data de Nascimento (dd/MM/aaaa): ");
+            data = in.nextLine();
+            dataR = data.split("/");
+            dataNascimento = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+            if (dataNascimento.isAfter(LocalDate.now())){
+                System.out.println("Data de nascimento inválida!\nDigite uma data anterior a hoje!");
+            }
+        }while (dataNascimento.isAfter(LocalDate.now()));
 
-        System.out.println("CPF: ");
-        cpf = in.nextLine();
-        in.nextLine();
+        do {
+            System.out.println("CPF: ");
+            cpf = in.nextLine();
+            if (servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf))){
+                System.out.println("Professor já cadastrado!\n");
+            }
+        }while (servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf)));
+
 
         System.out.println("E-mail: ");
         email = in.nextLine();
-        in.nextLine();
 
         System.out.println("Senha: ");
         senha = in.nextLine();
-        in.nextLine();
 
         professor = new Professor(nome, email, sexo, dataNascimento, senha, cpf);
         servidorSigava.cadastrarProfessor(professor);
+        System.out.println("Professor cadastrado");
     }
 
     private static void descadastrarProfessor(IServidorSigava servidorSigava){
@@ -171,31 +245,40 @@ public class Sistema {
 
         System.out.println("Nome: ");
         nome = in.nextLine();
-        in.nextLine();
+
 
         System.out.println("Sexo (m ou f): ");
         sexo = in.next().charAt(0);
         in.nextLine();
 
-        System.out.println("Data de Nascimento (dd/MM/aaaa): ");
-        data = in.nextLine();
-        dataA = data.split("/");
-        dataNascimento = LocalDate.parse(dataA[2] + "-" + dataA[1] + "-" + dataA[0]);
+        do {
+            System.out.println("Data de Nascimento (dd/MM/aaaa): ");
+            data = in.nextLine();
+            dataA = data.split("/");
+            dataNascimento = LocalDate.parse(dataA[2] + "-" + dataA[1] + "-" + dataA[0]);
+            if (dataNascimento.isAfter(LocalDate.now())){
+                System.out.println("Data de nascimento inválida!!\nDigite uma data anterior a hoje!");
+            }
+        }while (dataNascimento.isAfter(LocalDate.now()));
 
-        System.out.println("CPF: ");
-        cpf = in.nextLine();
-        in.nextLine();
+        do {
+            System.out.println("CPF: ");
+            cpf = in.nextLine();
+            if (servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf))){
+                System.out.println("Aluno já cadastrado!\n");
+            }
+        }while (servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf)));
 
         System.out.println("E-mail: ");
         email = in.nextLine();
-        in.nextLine();
 
         System.out.println("Senha: ");
         senha = in.nextLine();
-        in.nextLine();
+
 
         aluno = new Aluno(nome, email, sexo, dataNascimento, senha, cpf);
         servidorSigava.cadastrarAluno(aluno);
+        System.out.println("Aluno cadastrado");
     }
 
     private static void descadastrarAluno(IServidorSigava servidorSigava){
@@ -221,30 +304,61 @@ public class Sistema {
     private static void cadastrarTarefa(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         Tarefa tarefa;
-        String descricao, dataT[], data, data1;
+        Disciplina disciplina;
+        String descricao, dataI[], data, data1, dataT[];
         LocalDate dataInicio, dataTermino;
         int codigoTarefa;
 
         System.out.println("Descricao da tarefa: ");
         descricao = in.nextLine();
-        in.nextLine();
-
-        System.out.println("Data de inicio: ");
-        data = in.nextLine();
-        dataT = data.split("/");
-        dataInicio = LocalDate.parse(dataT[0] + "-" + dataT[1] + "-" + dataT[2]);
-
-        System.out.println("Data de termino: ");
-        data1 = in.nextLine();
-        dataT = data1.split("/");
-        dataTermino = LocalDate.parse(dataT[0] + "-" + dataT[1] + "-" + dataT[2]);
 
         System.out.println("Codigo da tarefa: ");
         codigoTarefa = in.nextInt();
-        in.nextLine();
+
+
+        listarDisciplinas(servidorSigava);
+        do {
+            disciplina = selecionarDisciplina(servidorSigava);
+
+            if (disciplina == null){
+                System.out.println("Disciplina não encontrada");
+            }
+        }while (disciplina == null);
+
+        do {
+            in.nextLine();
+            System.out.println("Data de inicio: ");
+            data = in.nextLine();
+            dataI = data.split("/");
+            dataInicio = LocalDate.parse(dataI[2] + "-" + dataI[1] + "-" + dataI[0]);
+            if (dataInicio.isBefore(LocalDate.now())){
+                System.out.println("Data de início anterior a hoje!!");
+            }
+        }while (dataInicio.isBefore(LocalDate.now()) && dataInicio.isBefore(disciplina.gerarDataFim()) &&
+                dataInicio.isBefore(disciplina.getDataInicio()));
+
+        do {
+            in.nextLine();
+            System.out.println("Data de termino: ");
+            data1 = in.nextLine();
+            dataT = data1.split("/");
+            dataTermino = LocalDate.parse(dataT[2] + "-" + dataT[1] + "-" + dataT[0]);
+            if (dataTermino.isAfter(disciplina.gerarDataFim())){
+                System.out.println("A data fornecida é após o término da disciplina!");
+            }
+            if (dataTermino.isBefore(dataInicio)){
+                System.out.println("A data fornecida é anterior a data início da tarefa!");
+            }
+            if (dataTermino.isBefore(disciplina.getDataInicio())){
+                System.out.println("A data fornecida é antes do início da disciplina!");
+            }
+        }while (dataTermino.isAfter(disciplina.gerarDataFim()) && dataTermino.isBefore(dataInicio) &&
+                dataTermino.isBefore(disciplina.getDataInicio()));
 
         tarefa =  new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa);
         servidorSigava.cadastrarTarefa(tarefa);
+        servidorSigava.cadastrarTarefaDisciplina(disciplina.getNome(), tarefa);
+        System.out.println("Tarefa cadastrada");
     }
 
     private static void descadastrarTarefa(IServidorSigava servidorSigava){
@@ -268,6 +382,7 @@ public class Sistema {
     private static void cadastrarDisciplina(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         Disciplina disciplina = null;
+        Professor professor;
         String nome, data;
         String dataR[];
         LocalDate dataInicio;
@@ -276,12 +391,17 @@ public class Sistema {
 
         System.out.println("Nome: ");
         nome = in.nextLine();
-        in.nextLine();
 
-        System.out.println("Data de Início (dd/MM/aaaa): ");
-        data = in.nextLine();
-        dataR = data.split("/");
-        dataInicio = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+       do {
+           System.out.println("Data de Início (dd/MM/aaaa): ");
+           data = in.nextLine();
+           dataR = data.split("/");
+           dataInicio = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+           if (dataInicio.isBefore(LocalDate.now())){
+               System.out.println("Data de início anterior a hoje!!");
+           }
+       }while (dataInicio.isBefore(LocalDate.now()));
+
         diaAula = dataInicio.getDayOfWeek();
 
         System.out.println("Duração da aula: ");
@@ -292,9 +412,15 @@ public class Sistema {
 
         disciplina = new Disciplina(nome, dataInicio, diaAula, duracaoAula, cargaHoraria);
         servidorSigava.cadastrarDisciplina(disciplina);
+
+        System.out.println("Acossie a disciplina a um professor!");
+        listarProfessores(servidorSigava);
+        professor = selecionarProfessor(servidorSigava);
+        servidorSigava.cadastrarProfessorDisciplina(disciplina.getNome(), professor);
+        System.out.println("Disciplina cadastrada");
     }
 
-    public static void descadastrarDisciplina(IServidorSigava servidorSigava){
+    private static void descadastrarDisciplina(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         Disciplina disciplina;
         String nome;
@@ -315,7 +441,7 @@ public class Sistema {
         }
     }
 
-    static void procurarAluno (IServidorSigava servidor){
+    private static void procurarAluno (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o cpf do Aluno: ");
         String cpf = scan.next();
@@ -323,7 +449,7 @@ public class Sistema {
         System.out.println(servidor.buscarAluno(cpf).toString());
     }
 
-    static void procurarProfessor (IServidorSigava servidor){
+    private static void procurarProfessor (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o cpf do Professor: ");
         String cpf = scan.next();
@@ -331,7 +457,7 @@ public class Sistema {
         System.out.println(servidor.buscarProfessor(cpf).toString());
     }
 
-    static void procurarDisciplina (IServidorSigava servidor){
+    private static void procurarDisciplina (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o nome da disciplina: ");
         String nome = scan.next();
@@ -339,7 +465,7 @@ public class Sistema {
         System.out.println(servidor.buscarDisciplina(nome).toString());
     }
 
-    static void procurarTarefa (IServidorSigava servidor){
+    private static void procurarTarefa (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o código da tarefa: ");
         int codigo = scan.nextInt();
@@ -347,48 +473,46 @@ public class Sistema {
         System.out.println(servidor.buscarTarefa(codigo).toString());
     }
 
-    static void listarAlunos (IServidorSigava servidor){
+    private static void listarAlunos (IServidorSigava servidor){
         if (servidor.listarAlunos() == null || servidor.listarAlunos().size()<1){
-            System.out.printf("Não há alunos no repositório.\n");
+            System.out.println("Não há alunos no repositório.\n");
         }
-
         else {
             for (int i = 0; i < servidor.listarAlunos().size() ; i++) {
-                System.out.printf(servidor.listarAlunos().get(i).toString());
+                System.out.println(servidor.listarAlunos().get(i).toString());
             }
         }
     }
 
-    static void listarDisciplinas (IServidorSigava servidor){
+    private static void listarDisciplinas (IServidorSigava servidor){
         if (servidor.listarDisciplinas() == null || servidor.listarDisciplinas().size()<1){
-            System.out.printf("Não há disciplinas no repositório.\n");
+            System.out.println("Não há disciplinas no repositório.\n");
         }
         else {
-            for (int i = 0; i < servidor.listarDisciplinas().size() ; i++) {
-                System.out.printf(servidor.listarDisciplinas().get(i).toString());
+            for (int i = 0; i < servidor.listarDisciplinas().size(); i++) {
+                System.out.println(servidor.listarDisciplinas().get(i).toString());
             }
         }
     }
 
-    static void listarTarefas (IServidorSigava servidor){
+    private static void listarTarefas (IServidorSigava servidor){
         if (servidor.listarTarefas() == null || servidor.listarTarefas().size()<1){
-            System.out.printf("Não há tarefas no repositório.\n");
+            System.out.println("Não há tarefas no repositório.\n");
         }
         else {
             for (int i = 0; i < servidor.listarTarefas().size(); i++) {
-                System.out.printf(servidor.listarTarefas().get(i).toString());
+                System.out.println(servidor.listarTarefas().get(i).toString());
             }
         }
     }
 
-    static void listarProfessores (IServidorSigava servidor){
+    private static void listarProfessores (IServidorSigava servidor){
         if (servidor.listarProfessores() == null || servidor.listarProfessores().size()<1){
-            System.out.printf("Não há professores no repositório.\n");
+            System.out.println("Não há professores no repositório.\n");
         }
-
         else {
             for (int i = 0; i < servidor.listarProfessores().size() ; i++) {
-                System.out.printf(servidor.listarProfessores().get(i).toString());
+                System.out.println(servidor.listarProfessores().get(i).toString());
             }
         }
     }
@@ -453,6 +577,12 @@ public class Sistema {
                     CriarCronograma(selecionarAluno(servidorSigava), servidorSigava);
                     break;
                 case 18:
+                    AssociarAlunoDisc(servidorSigava);
+                    break;
+                case 19:
+                    AssociarDiscProf(servidorSigava);
+                    break;
+                case 20:
                     loop = false;
                     break;
                 default:

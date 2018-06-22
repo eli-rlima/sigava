@@ -63,7 +63,7 @@ public class Tarefa {
         return "Codigo da tarefa: " + this.getCodigoTarefa() +
                 "\nDescricao da tarefa: " + this.getDescricao() +
                 "\nData Inicio = " + this.getDataInicio().format(formatter) +
-                "\nData Termino = " + this.getDataTermino().format(formatter) +
+                "\nData Termino = " + this.getDataTermino().format(formatter) + "\n" +
                 this.getDuracao() + " dias para a data da entrega."; 
     } 
  
