@@ -75,7 +75,7 @@ public class CadastroAlunos {
                 if (codigoTarefa >= 0 && aluno.buscarDisciplina(nomeDisciplina) != null &&
                         aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa) != null) { //TODO
                     tarefa = aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa);
-                    if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isBefore(dataTermino)){ //TODO
+                    if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isAfter(dataTermino)){ //TODO
                         marcacao.setCodigoTarefa(tarefa.getCodigoTarefa());
                         marcacao.setDataTermino(dataTermino);
                         retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino);
