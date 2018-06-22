@@ -36,6 +36,23 @@ public class Sistema {
         System.out.println("18\t - SAIR");
     }
 
+    private static Aluno selecionarAluno(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        String cpf;
+        Aluno aluno = null;
+
+        System.out.println("Digite o CPF do aluno selecionado: ");
+        cpf = in.nextLine();
+
+        if (servidorSigava.buscarAluno(cpf) == null){
+            System.out.println("Aluno não encontrado!");
+        }
+        else {
+            aluno = servidorSigava.buscarAluno(cpf);
+        }
+        return aluno;
+    }
+
     private static void CriarCronograma(Aluno aluno, IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         String nomeCrono, nomeDisc, data;
@@ -45,8 +62,8 @@ public class Sistema {
         Cronograma cronograma;
         boolean ver;
 
-        if (aluno.getDisciplinas() == null){
-            System.out.println("O aluno não tem disciplinas cadastradas!");
+        if (aluno == null || aluno.getDisciplinas() == null){
+            System.out.println("O aluno não tem disciplinas cadastradas ou não existe!");
         }
         else{
             for (int i = 0; i < aluno.getDisciplinas().size(); i++){
@@ -326,7 +343,8 @@ public class Sistema {
                     listarTarefas(servidorSigava);
                     break;
                 case 17:
-                    //cronograma
+                    listarAlunos(servidorSigava);
+                    CriarCronograma(selecionarAluno(servidorSigava), servidorSigava);
                     break;
                 case 18:
                     loop = false;
