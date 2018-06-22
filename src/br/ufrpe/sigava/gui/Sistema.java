@@ -3,6 +3,7 @@ package br.ufrpe.sigava.gui;
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Marcacao;
+import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
@@ -160,6 +161,109 @@ public class Sistema {
         }
     }
 
+    private static Aluno cadastrarAluno(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        Aluno aluno;
+        String nome, email, senha, cpf, data;
+        char sexo;
+        LocalDate dataNascimento;
+        String dataA[];
+
+        System.out.println("Nome: ");
+        nome = in.nextLine();
+        in.nextLine();
+
+        System.out.println("Sexo (m ou f): ");
+        sexo = in.next().charAt(0);
+
+        System.out.println("Data de Nascimento (dd/MM/aaaa): ");
+        data = in.nextLine();
+        dataA = data.split("/");
+        dataNascimento = LocalDate.parse(dataA[2] + "-" + dataA[1] + "-" + dataA[0]);
+
+        System.out.println("CPF: ");
+        cpf = in.nextLine();
+        in.nextLine();
+
+        System.out.println("E-mail: ");
+        email = in.nextLine();
+        in.nextLine();
+
+        System.out.println("Senha: ");
+        senha = in.nextLine();
+        in.nextLine();
+
+        aluno = new Aluno(nome, email, sexo, dataNascimento, senha, cpf);
+        return aluno;
+    }
+
+    private static void descadastrarAluno(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        Aluno aluno;
+        String cpf;
+        boolean analisar;
+
+        System.out.println("CPF do aluno: ");
+        cpf = in.nextLine();
+        aluno = servidorSigava.buscarAluno(cpf);
+        if(aluno == null){
+            System.out.println("Aluno não cadastrado");
+        }
+        else{
+            analisar = servidorSigava.descadastrarAluno(aluno);
+            if(analisar){
+                System.out.println("Descadastrado com sucesso!");
+            }else System.out.println("Não foi possível descadastrar!");
+        }
+    }
+
+    private static Tarefa cadastrarTarefa(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        Tarefa tarefa;
+        String descricao, dataT[], data, data1;
+        LocalDate dataInicio, dataTermino;
+        int codigoTarefa;
+
+        System.out.println("Descricao da tarefa: ");
+        descricao = in.nextLine();
+        in.nextLine();
+
+        System.out.println("Data de inicio: ");
+        data = in.nextLine();
+        dataT = data.split("/");
+        dataInicio = LocalDate.parse(dataT[0] + "-" + dataT[1] + "-" + dataT[2]);
+
+        System.out.println("Data de termino: ");
+        data1 = in.nextLine();
+        dataT = data1.split("/");
+        dataTermino = LocalDate.parse(dataT[0] + "-" + dataT[1] + "-" + dataT[2]);
+
+        System.out.println("Codigo da tarefa: ");
+        codigoTarefa = in.nextInt();
+        in.nextLine();
+
+        tarefa =  new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa);
+        return tarefa;
+    }
+
+    private static void descadastrarTarefa(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        Tarefa tarefa;
+        int codigoTarefa;
+        boolean analisar;
+
+        System.out.println("Codigo da tarefa: ");
+        codigoTarefa = in.nextInt();
+        tarefa = servidorSigava.buscarTarefa(codigoTarefa);
+        if (tarefa != null){
+            analisar = servidorSigava.descadastrarTarefa(tarefa);
+            System.out.println("Tarefa descadastrada!");
+        }
+        else {
+            System.out.println("Tarefa nao localizada, favor inserir um codigo valido!");
+        }
+    }
+
     private static void cadastrarDisciplina(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         Disciplina disciplina = null;
@@ -296,7 +400,7 @@ public class Sistema {
             int controleMenu = in.nextInt();
             switch (controleMenu){
                 case 1:
-                    //cadastrar Aluno;
+                    cadastrarAluno(servidorSigava);
                     break;
                 case 2:
                     cadastroProfessor(servidorSigava);
@@ -305,10 +409,10 @@ public class Sistema {
                     cadastrarDisciplina(servidorSigava);
                     break;
                 case 4:
-                    //cadastro Tarefa;
+                    cadastrarTarefa(servidorSigava);
                     break;
                 case 5:
-                    //descadastrar Aluno
+                    descadastrarAluno(servidorSigava);
                     break;
                 case 6:
                     descadastrarProfessor(servidorSigava);
@@ -317,7 +421,7 @@ public class Sistema {
                     descadastrarDisciplina(servidorSigava);
                     break;
                 case 8:
-                    //descadastrar tarefa
+                    descadastrarTarefa(servidorSigava);
                     break;
                 case 9:
                     procurarAluno(servidorSigava);
