@@ -38,4 +38,14 @@ public class Cronograma {
         }
         return marcacao;
     }
+
+    @Override
+    public String toString (){
+        StringBuilder retorno = new StringBuilder();
+        retorno.append("Cronograma: "+nome);
+        for (int i = 0; i < marcacoes.size(); i++) {
+            retorno.append("\n"+marcacoes.get(i).toString());
+        }
+        return retorno.toString();
+    }
 }

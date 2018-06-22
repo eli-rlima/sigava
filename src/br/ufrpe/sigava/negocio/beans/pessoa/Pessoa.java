@@ -1,9 +1,11 @@
 package br.ufrpe.sigava.negocio.beans.pessoa;
 
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Login;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public abstract class Pessoa {
     private String nome;
@@ -81,4 +83,8 @@ public abstract class Pessoa {
         }else equals = false;
         return equals;
     }
+
+    public abstract ArrayList<Disciplina> getDisciplinas();
+
+    public abstract Disciplina buscarDisciplina(String nomeDisciplina);
 }

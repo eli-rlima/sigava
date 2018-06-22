@@ -2,7 +2,6 @@ package br.ufrpe.sigava.gui;
 
 import br.ufrpe.sigava.negocio.IServidorSigava;
 import br.ufrpe.sigava.negocio.beans.Cronograma;
-import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
@@ -39,7 +38,7 @@ public class Sistema {
         System.out.println("20\t - SAIR");
     }
 
-    private static void AssociarAlunoDisc(IServidorSigava servidorSigava){
+    private static void associarAlunoDisc(IServidorSigava servidorSigava){
         Aluno aluno;
         Disciplina disciplina;
 
@@ -86,16 +85,13 @@ public class Sistema {
         return professor;
     }
 
-    private static void AssociarDiscProf(IServidorSigava servidorSigava){
+    private static void associarDiscProf(IServidorSigava servidorSigava){
         Professor professor;
         Disciplina disciplina;
-
-        servidorSigava.listarDisciplinas();
+        listarDisciplinas(servidorSigava);
         disciplina = selecionarDisciplina(servidorSigava);
-
-        servidorSigava.listarProfessores();
+        listarProfessores(servidorSigava);
         professor = selecionarProfessor(servidorSigava);
-
         servidorSigava.cadastrarProfessorDisciplina(disciplina.getNome(),professor);
     }
 
@@ -116,7 +112,18 @@ public class Sistema {
         return aluno;
     }
 
-    private static void CriarCronograma(Aluno aluno, IServidorSigava servidorSigava){
+    private static void listarCronograma (Aluno aluno, IServidorSigava servidorSigava){
+        if (aluno == null){
+            System.out.println("O aluno não existe!");
+        }
+        else {
+            for (int i = 0; i < aluno.getCronogramas().size(); i++) {
+                System.out.println(aluno.getCronogramas().get(i).toString());
+            }
+        }
+    }
+
+    private static void criarCronograma(Aluno aluno, IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         String nomeCrono, nomeDisc, data;
         String dataR[];
@@ -155,14 +162,13 @@ public class Sistema {
 
             System.out.println("Digite o nome do cronograma: ");
             nomeCrono = in.nextLine();
-            in.nextLine();
             cronograma = new Cronograma(nomeCrono);
             aluno.adicionarCronograma(cronograma);
-
             ver = servidorSigava.adicionarMarcacao(nomeDisc, nomeCrono, aluno, codigoTarefa, dataTermino);
 
             if (ver){
                 System.out.println("Tarefa adicionada ao cronograma " + nomeCrono);
+                listarCronograma(aluno, servidorSigava);
             }
             else{
                 System.out.println("Data de término selecionada maior que o limite!");
@@ -198,10 +204,12 @@ public class Sistema {
         do {
             System.out.println("CPF: ");
             cpf = in.nextLine();
-            if (servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf))){
-                System.out.println("Professor já cadastrado!\n");
+            if (servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf))
+                    || servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf))){
+                System.out.println("Pessoa já cadastrado!\n");
             }
-        }while (servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf)));
+        }while (servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf))
+                || servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf)));
 
 
         System.out.println("E-mail: ");
@@ -264,10 +272,12 @@ public class Sistema {
         do {
             System.out.println("CPF: ");
             cpf = in.nextLine();
-            if (servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf))){
-                System.out.println("Aluno já cadastrado!\n");
+            if (servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf))
+                    || servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf))){
+                System.out.println("Pessoa já cadastrado!\n");
             }
-        }while (servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf)));
+        }while (servidorSigava.existeAluno(servidorSigava.buscarAluno(cpf))
+                || servidorSigava.existeProfessor(servidorSigava.buscarProfessor(cpf)));
 
         System.out.println("E-mail: ");
         email = in.nextLine();
@@ -338,7 +348,6 @@ public class Sistema {
                 dataInicio.isBefore(disciplina.getDataInicio()));
 
         do {
-            in.nextLine();
             System.out.println("Data de termino: ");
             data1 = in.nextLine();
             dataT = data1.split("/");
@@ -574,13 +583,13 @@ public class Sistema {
                     break;
                 case 17:
                     listarAlunos(servidorSigava);
-                    CriarCronograma(selecionarAluno(servidorSigava), servidorSigava);
+                    criarCronograma(selecionarAluno(servidorSigava), servidorSigava);
                     break;
                 case 18:
-                    AssociarAlunoDisc(servidorSigava);
+                    associarAlunoDisc(servidorSigava);
                     break;
                 case 19:
-                    AssociarDiscProf(servidorSigava);
+                    associarDiscProf(servidorSigava);
                     break;
                 case 20:
                     loop = false;

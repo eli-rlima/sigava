@@ -24,7 +24,7 @@ public class Professor extends Pessoa {
     }
 
 
-    public Disciplina buscar(String nomeDisciplina){
+    public Disciplina buscarDisciplina(String nomeDisciplina){
         Disciplina disciplina = null;
         for (int i = 0; i < this.disciplinasCadastradas.size(); i++){
             if (this.disciplinasCadastradas.get(i).getNome().equals(nomeDisciplina)){

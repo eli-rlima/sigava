@@ -69,7 +69,7 @@ public class RepositorioAluno implements IRepositorioAluno{
         boolean retorno = false;
         if (aluno != null && nomeCronograma != null) {
             for (int i = 0; i < aluno.getCronogramas().size(); i++) {
-                if (aluno.getCronogramas().get(i).getNome().equals(nomeCronograma)) {
+                if (aluno.getCronogramas().get(i).getNome().equalsIgnoreCase(nomeCronograma)) {
                     retorno = true;
                 }
             }
