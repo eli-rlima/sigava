@@ -2,8 +2,8 @@ package br.ufrpe.sigava.negocio;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
-import br.ufrpe.sigava.pessoa.Aluno;
-import br.ufrpe.sigava.pessoa.Professor;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.dados.RepositorioDisciplina;
 
 import java.time.DayOfWeek;
@@ -70,6 +70,8 @@ public class CadastroDisciplinas {
         }
         if (disciplina != null && professor != null){ //TODO
             disciplina.adicionarProfessor(professor);
+            professor.adicionar(disciplina);  // Garantir que professor receba a disciplina,
+                                                        // quando o mesmo esteja sendo adicionado.
             retorno = true;
         }
         return retorno;
@@ -83,6 +85,8 @@ public class CadastroDisciplinas {
         }
         if (disciplina != null && aluno != null){ //TODO
             disciplina.adicionarAluno(aluno);
+            aluno.adicionarDisciplina(disciplina);  // certificar de quando um aluno entrar na disciplina,
+                                                    // a disciplina esteja nos seus atributos.
             retorno = true;
         }
         return retorno;

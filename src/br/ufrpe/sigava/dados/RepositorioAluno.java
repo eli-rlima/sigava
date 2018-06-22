@@ -2,7 +2,7 @@ package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
-import br.ufrpe.sigava.pessoa.Aluno;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

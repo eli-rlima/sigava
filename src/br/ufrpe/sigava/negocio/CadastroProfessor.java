@@ -1,6 +1,6 @@
 package br.ufrpe.sigava.negocio;
 
-import br.ufrpe.sigava.pessoa.Professor;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.dados.RepositorioProfessor;
 import java.time.LocalDate;
 

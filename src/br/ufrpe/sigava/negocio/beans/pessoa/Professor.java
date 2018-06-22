@@ -1,4 +1,4 @@
-package br.ufrpe.sigava.pessoa;
+package br.ufrpe.sigava.negocio.beans.pessoa;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 
@@ -18,6 +18,11 @@ public class Professor extends Pessoa {
     public boolean remover(Disciplina disciplina){
         return this.disciplinasCadastradas.remove(disciplina);
     }
+
+    public ArrayList<Disciplina> getDisciplinas(){
+        return disciplinasCadastradas;
+    }
+
 
     public Disciplina buscar(String nomeDisciplina){
         Disciplina disciplina = null;

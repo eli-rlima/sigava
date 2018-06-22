@@ -1,4 +1,4 @@
-package br.ufrpe.sigava.pessoa;
+package br.ufrpe.sigava.negocio.beans.pessoa;
 
 import br.ufrpe.sigava.negocio.beans.Login;
 

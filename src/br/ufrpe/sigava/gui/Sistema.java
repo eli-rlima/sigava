@@ -1,7 +1,9 @@
 package br.ufrpe.sigava.gui;
 
 import br.ufrpe.sigava.negocio.IServidorSigava;
-import br.ufrpe.sigava.pessoa.Professor;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -11,29 +13,30 @@ public class Sistema {
     private static void MenuAcesso(){
         System.out.println("BEM-VINDO AO SIGAVA\n");
         System.out.println("ESCOLHA UMA OPÇÃO: ");
-        System.out.println("1 - Administrador");
-        System.out.println("2 - Professor");
-        System.out.println("3 - Aluno");
-        System.out.println("0 - Sair");
+        System.out.println("1\t - Cadastrar");
+        System.out.println("2\t - Descadastrar");
+        System.out.println("3\t - Procurar");
+        System.out.println("4\t - Atualizar");
+        System.out.println("5\t - Cadastrar Aluno");
+        System.out.println("6\t - Cadastrar Professor");
+        System.out.println("7\t - Cadastrar Disciplina");
+        System.out.println("8\t - Cadastrar Tarefa");
+        System.out.println("9\t - Descadastrar Aluno");
+        System.out.println("10\t - Descadastrar Professor");
+        System.out.println("11\t - Descadastrar Disciplina");
+        System.out.println("12\t - Descadastrar Tarefa");
+        System.out.println("13\t - Procurar Aluno");
+        System.out.println("14\t - Procurar Professor");
+        System.out.println("15\t - Procurar Disciplina");
+        System.out.println("16\t - Procurar Tarefa");
+        System.out.println("17\t - Listar Alunos");
+        System.out.println("18\t - Listar Professores");
+        System.out.println("19\t - Listar Disciplinas");
+        System.out.println("20\t - Listar Tarefas");
+        System.out.println("21\t - SAIR");
+
     }
 
-    private static void MenuAdm(){
-        System.out.println("ESCOLHA UMA OPÇÃO: ");
-        System.out.println("1 - Gerenciar Professores");
-        System.out.println("2 - Gerenciar Alunos");
-        System.out.println("3 - Gerenciar Disciplinas");
-        System.out.println("0 - Voltar");
-    }
-
-    private static void MenuGerenciarProfessores(){
-        System.out.println("GERENCIAR PROFESSORES");
-        System.out.println("ESCOLHA UMA OPÇÃO: ");
-        System.out.println("1 - Cadastrar");
-        System.out.println("2 - Descadastrar");
-        System.out.println("3 - Procurar");
-        System.out.println("4 - Atualizar");
-        System.out.println("0 - Voltar");
-    }
 
     private static Professor cadastroProfessor(Scanner in){
         Professor professor;
@@ -91,53 +94,10 @@ public class Sistema {
     public static void Sistema(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         int controleMenu = in.nextInt();
-        int controleAdm, controleAdm1;
-        boolean cadProfAdm;
+
 
         do {
-            MenuAcesso();
-            controleMenu = in.nextInt();
-            switch (controleMenu){
-                case 1:
-                    MenuAdm();
-                    controleAdm = in.nextInt();
-                    switch (controleAdm){
-                        case 1:
-                            MenuGerenciarProfessores();
-                            controleAdm1 = in.nextInt();
-                            switch (controleAdm1){
-                                case 1:
-                                    cadProfAdm = servidorSigava.cadastrarProfessor(cadastroProfessor(in));
-                                    if (cadProfAdm){
-                                        System.out.println("Cadastrado com sucesso!");
-                                    }else System.out.println("Erro no cadastro!");
-                                    break;
-                                case 2:
-                                    descadastrarProfessor(in, servidorSigava);
-                                    break;
-                                case 3:
-                                    break;
-                                case 4:
-                                    break;
-                                case 0:
-                                    break;
-                            }
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 0:
-                            break;
-                    }
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 0:
-                    break;
-            }
-        }while (controleMenu != 0);
+
+        }while (controleMenu != 21);
     }
 }

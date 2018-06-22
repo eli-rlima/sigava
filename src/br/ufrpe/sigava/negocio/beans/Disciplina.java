@@ -1,7 +1,7 @@
 package br.ufrpe.sigava.negocio.beans;
 
-import br.ufrpe.sigava.pessoa.Aluno;
-import br.ufrpe.sigava.pessoa.Professor;
+import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -102,8 +102,6 @@ public class Disciplina{
         boolean retorno = false;
         if (aluno != null) {
               this.alunos.add(aluno);
-              aluno.adicionarDisciplina(this);  // certificar de quando um aluno entrar na disciplina,
-                                                // a disciplina esteja nos seus atributos.
               retorno = true;
         }
         return retorno;
