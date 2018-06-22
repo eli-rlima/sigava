@@ -22,15 +22,16 @@ public class Sistema {
         System.out.println("6\t - Descadastrar Professor");
         System.out.println("7\t - Descadastrar Disciplina");
         System.out.println("8\t - Descadastrar Tarefa");
-        System.out.println("9\t - Procurar Aluno");  //TODO
-        System.out.println("10\t - Procurar Professor"); //TODO
-        System.out.println("11\t - Procurar Disciplina"); //TODO
-        System.out.println("12\t - Procurar Tarefa"); //TODO
-        System.out.println("13\t - Listar Alunos"); //TODO
-        System.out.println("14\t - Listar Professores"); //TODO
-        System.out.println("15\t - Listar Disciplinas"); //TODO
-        System.out.println("16\t - Listar Tarefas"); //TODO
-        System.out.println("17\t - SAIR");
+        System.out.println("9\t - Procurar Aluno");
+        System.out.println("10\t - Procurar Professor");
+        System.out.println("11\t - Procurar Disciplina");
+        System.out.println("12\t - Procurar Tarefa");
+        System.out.println("13\t - Listar Alunos");
+        System.out.println("14\t - Listar Professores");
+        System.out.println("15\t - Listar Disciplinas");
+        System.out.println("16\t - Listar Tarefas");
+        System.out.println("17\t - Cronograma");
+        System.out.println("18\t - SAIR");
     }
 
     private static void cadastroProfessor(IServidorSigava servidorSigava){
@@ -139,7 +140,7 @@ public class Sistema {
         }
     }
 
-    static void ProcurarAluno (IServidorSigava servidor){
+    static void procurarAluno (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o cpf do Aluno: ");
         String cpf = scan.next();
@@ -147,7 +148,7 @@ public class Sistema {
         System.out.println(servidor.buscarAluno(cpf).toString());
     }
 
-    static void ProcurarProfessor (IServidorSigava servidor){
+    static void procurarProfessor (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o cpf do Professor: ");
         String cpf = scan.next();
@@ -155,7 +156,7 @@ public class Sistema {
         System.out.println(servidor.buscarProfessor(cpf).toString());
     }
 
-    static void ProcurarDisciplina (IServidorSigava servidor){
+    static void procurarDisciplina (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o nome da disciplina: ");
         String nome = scan.next();
@@ -163,7 +164,7 @@ public class Sistema {
         System.out.println(servidor.buscarDisciplina(nome).toString());
     }
 
-    static void ProcurarTarefa (IServidorSigava servidor){
+    static void procurarTarefa (IServidorSigava servidor){
         Scanner scan = new Scanner(System.in);
         System.out.println("Digite o código da tarefa: ");
         int codigo = scan.nextInt();
@@ -171,10 +172,11 @@ public class Sistema {
         System.out.println(servidor.buscarTarefa(codigo).toString());
     }
 
-    static void ListarAlunos (IServidorSigava servidor){
-        if (servidor.listarAlunos() == null && servidor.listarAlunos().size()<1){
+    static void listarAlunos (IServidorSigava servidor){
+        if (servidor.listarAlunos() == null || servidor.listarAlunos().size()<1){
             System.out.printf("Não há alunos no repositório.\n");
         }
+
         else {
             for (int i = 0; i < servidor.listarAlunos().size() ; i++) {
                 System.out.printf(servidor.listarAlunos().get(i).toString());
@@ -182,8 +184,8 @@ public class Sistema {
         }
     }
 
-    static void ListarDisciplinas (IServidorSigava servidor){
-        if (servidor.listarDisciplinas() == null && servidor.listarDisciplinas().size()<1){
+    static void listarDisciplinas (IServidorSigava servidor){
+        if (servidor.listarDisciplinas() == null || servidor.listarDisciplinas().size()<1){
             System.out.printf("Não há disciplinas no repositório.\n");
         }
         else {
@@ -193,8 +195,8 @@ public class Sistema {
         }
     }
 
-    static void ListarTarefas (IServidorSigava servidor){
-        if (servidor.listarTarefas() == null && servidor.listarTarefas().size()<1){
+    static void listarTarefas (IServidorSigava servidor){
+        if (servidor.listarTarefas() == null || servidor.listarTarefas().size()<1){
             System.out.printf("Não há tarefas no repositório.\n");
         }
         else {
@@ -204,10 +206,11 @@ public class Sistema {
         }
     }
 
-    static void ListarProfessores (IServidorSigava servidor){
-        if (servidor.listarProfessores() == null && servidor.listarProfessores().size()<1){
+    static void listarProfessores (IServidorSigava servidor){
+        if (servidor.listarProfessores() == null || servidor.listarProfessores().size()<1){
             System.out.printf("Não há professores no repositório.\n");
         }
+
         else {
             for (int i = 0; i < servidor.listarProfessores().size() ; i++) {
                 System.out.printf(servidor.listarProfessores().get(i).toString());
@@ -216,12 +219,73 @@ public class Sistema {
     }
 
     public static void Sistema(IServidorSigava servidorSigava){
-        Scanner in = new Scanner(System.in);
-        int controleMenu = in.nextInt();
-
-
+        boolean loop = true;
         do {
+            MenuAcesso();
+            Scanner in = new Scanner(System.in);
+            int controleMenu = in.nextInt();
+            switch (controleMenu){
+                case 1:
+                    //cadastrar Aluno;
+                    break;
+                case 2:
+                    cadastroProfessor(servidorSigava);
+                    break;
+                case 3:
+                    cadastrarDisciplina(servidorSigava);
+                    break;
+                case 4:
+                    //cadastro Tarefa;
+                    break;
+                case 5:
+                    //descadastrar Aluno
+                    break;
+                case 6:
+                    descadastrarProfessor(servidorSigava);
+                    break;
+                case 7:
+                    descadastrarDisciplina(servidorSigava);
+                    break;
+                case 8:
+                    //descadastrar tarefa
+                    break;
+                case 9:
+                    procurarAluno(servidorSigava);
+                    break;
+                case 10:
+                    procurarProfessor(servidorSigava);
+                    break;
+                case 11:
+                    procurarDisciplina(servidorSigava);
+                    break;
+                case 12:
+                    procurarTarefa(servidorSigava);
+                    break;
+                case 13:
+                    listarAlunos(servidorSigava);
+                    break;
+                case 14:
+                    listarProfessores(servidorSigava);
+                    break;
+                case 15:
+                    listarDisciplinas(servidorSigava);
+                    break;
+                case 16:
+                    listarTarefas(servidorSigava);
+                    break;
+                case 17:
+                    //cronograma
+                    break;
+                case 18:
+                    loop = false;
+                    break;
+                default:
+                    System.out.printf("Fora do range do menu.\n");
+                    break;
 
-        }while (controleMenu != 17);
+            }
+
+
+        }while (loop);
     }
 }
