@@ -8,7 +8,7 @@ import br.ufrpe.sigava.pessoa.Professor;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-public class ServidorSigava {
+public class ServidorSigava implements IServidorSigava{
     private CadastroProfessor professores;
     private CadastroAlunos alunos;
     private CadastroTarefas tarefas;
