@@ -1,8 +1,10 @@
 package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Tarefa;
+import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface IRepositorioTarefa {
     /**
@@ -60,5 +62,8 @@ public interface IRepositorioTarefa {
      * @return true ou false, caso seja encontrada true, caso não false.
      */
      boolean existe(Tarefa tarefa);
+
+    ArrayList <Tarefa> listarTarefas();
+
 
 }

@@ -1,5 +1,6 @@
 package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.dados.IRepositorioDisciplina;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
@@ -8,6 +9,7 @@ import br.ufrpe.sigava.dados.RepositorioDisciplina;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CadastroDisciplinas {
     private RepositorioDisciplina repositorioDisciplina;
@@ -26,6 +28,10 @@ public class CadastroDisciplinas {
             retorno = true;
         }
         return retorno;
+    }
+
+    public ArrayList<Disciplina> listarDisciplinas(){
+        return repositorioDisciplina.listarDisciplinas();
     }
 
     public boolean cadastrar(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula, int cargaHoraria){

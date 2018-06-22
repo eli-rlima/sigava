@@ -22,6 +22,14 @@ public class RepositorioAluno implements IRepositorioAluno{
         return instance;
     }
 
+    public ArrayList<Aluno> listarAlunos(){
+        ArrayList <Aluno> retorno = null;
+        for (int i = 0; i < repositorioAluno.size(); i++) {
+            retorno.add(repositorioAluno.get(i));
+        }
+        return retorno;
+    }
+
     @Override
     public boolean adicionar (Aluno aluno){
         return this.repositorioAluno.add(aluno);

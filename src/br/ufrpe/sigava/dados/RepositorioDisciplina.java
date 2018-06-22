@@ -2,6 +2,7 @@ package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +20,14 @@ public class RepositorioDisciplina implements IRepositorioDisciplina {
             instance = new RepositorioDisciplina();
         }
         return instance;
+    }
+
+    public ArrayList<Disciplina> listarDisciplinas(){
+        ArrayList <Disciplina> retorno = null;
+        for (int i = 0; i < repositorioDisciplina.size(); i++) {
+            retorno.add(repositorioDisciplina.get(i));
+        }
+        return retorno;
     }
 
     @Override

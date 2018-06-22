@@ -104,4 +104,6 @@ public interface IRepositorioAluno {
      */
     ArrayList<Disciplina> listarDisciplinas (Aluno aluno);
 
+    ArrayList<Aluno> listarAlunos();
+
 }

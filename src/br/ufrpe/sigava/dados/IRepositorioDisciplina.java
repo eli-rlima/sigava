@@ -3,6 +3,7 @@ package br.ufrpe.sigava.dados;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface IRepositorioDisciplina {
 
@@ -63,4 +64,7 @@ public interface IRepositorioDisciplina {
      * @return true ou false, caso tenha sido encontrada ou não, respectivamente.
      */
     boolean existe(Disciplina disciplina);
+
+    ArrayList<Disciplina> listarDisciplinas();
+
 }

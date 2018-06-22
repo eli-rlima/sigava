@@ -34,6 +34,22 @@ public class Disciplina{
 
     }
 
+    public String ListarAlunos (){
+        StringBuilder retorno = new StringBuilder();
+        for (int i = 0; i < alunos.size(); i++){
+            retorno.append("\n" + alunos.get(i).toString());
+        }
+        return retorno.toString();
+    }
+
+    public String ListarTarefas (){
+        StringBuilder retorno = new StringBuilder();
+        for (int i = 0; i < tarefas.size(); i++){
+            retorno.append("\n" + tarefas.get(i).toString());
+        }
+        return retorno.toString();
+    }
+
     public int getDuracaoAula() {
         return this.duracaoAula;
     }

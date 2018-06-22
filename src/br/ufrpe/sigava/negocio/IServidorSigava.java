@@ -7,6 +7,7 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface IServidorSigava {
 
@@ -57,6 +58,14 @@ public interface IServidorSigava {
     Tarefa buscarTarefa(int codigo);
 
     boolean existeTarefa(Tarefa tarefa);
+
+    ArrayList<Aluno> listarAlunos ();
+
+    ArrayList <Professor> listarProfessores ();
+
+    ArrayList <Tarefa> listarTarefas ();
+
+    ArrayList <Disciplina> listarDisciplinas ();
 
 
 }

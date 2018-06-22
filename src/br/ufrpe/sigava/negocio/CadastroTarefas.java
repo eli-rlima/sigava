@@ -4,6 +4,7 @@ import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.dados.RepositorioTarefa;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CadastroTarefas {
     private RepositorioTarefa repositorioTarefa;
@@ -22,6 +23,10 @@ public class CadastroTarefas {
             retorno = true;
         }
         return retorno;
+    }
+
+    public ArrayList<Tarefa> listarTarefas (){
+        return repositorioTarefa.listarTarefas();
     }
 
     public boolean cadastrar(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa){

@@ -1,10 +1,12 @@
 package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.dados.IRepositorioAluno;
 import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.dados.RepositorioAluno;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CadastroAlunos {
     private RepositorioAluno repositorioAluno;
@@ -41,6 +43,10 @@ public class CadastroAlunos {
             retorno = repositorioAluno.remover(aluno);
         }
         return retorno;
+    }
+
+    public ArrayList<Aluno> listarAlunos (){
+        return repositorioAluno.listarAlunos();
     }
 
     public Aluno procurar (String cpf){

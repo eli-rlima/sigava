@@ -7,6 +7,7 @@ import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ServidorSigava implements IServidorSigava{
     private CadastroProfessor professores;
@@ -28,6 +29,22 @@ public class ServidorSigava implements IServidorSigava{
             instance = new ServidorSigava();
         }
         return instance;
+    }
+
+    public ArrayList <Aluno> listarAlunos (){
+        return alunos.listarAlunos();
+    }
+
+    public ArrayList <Professor> listarProfessores (){
+        return professores.listarProfessores();
+    }
+
+    public ArrayList <Tarefa> listarTarefas (){
+        return tarefas.listarTarefas();
+    }
+
+    public ArrayList <Disciplina> listarDisciplinas (){
+        return disciplinas.listarDisciplinas();
     }
 
     public boolean cadastrarAluno(Aluno aluno){ //TODO excepcion
@@ -125,4 +142,8 @@ public class ServidorSigava implements IServidorSigava{
     public boolean existeTarefa(Tarefa tarefa){
         return this.tarefas.existe(tarefa);
     }
+
+
+
+
 }

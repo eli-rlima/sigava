@@ -1,8 +1,10 @@
 package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.dados.IRepositorioProfessor;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.dados.RepositorioProfessor;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public class CadastroProfessor {
@@ -20,6 +22,10 @@ public class CadastroProfessor {
             }
         }
         return retorno;
+    }
+
+    public ArrayList<Professor> listarProfessores (){
+        return repositorioProfessor.listarProfessores();
     }
 
     public boolean cadastrar (String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf) {
