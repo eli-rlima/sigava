@@ -161,7 +161,7 @@ public class Sistema {
         }
     }
 
-    private static Aluno cadastrarAluno(IServidorSigava servidorSigava){
+    private static void cadastrarAluno(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         Aluno aluno;
         String nome, email, senha, cpf, data;
@@ -175,6 +175,7 @@ public class Sistema {
 
         System.out.println("Sexo (m ou f): ");
         sexo = in.next().charAt(0);
+        in.nextLine();
 
         System.out.println("Data de Nascimento (dd/MM/aaaa): ");
         data = in.nextLine();
@@ -194,7 +195,7 @@ public class Sistema {
         in.nextLine();
 
         aluno = new Aluno(nome, email, sexo, dataNascimento, senha, cpf);
-        return aluno;
+        servidorSigava.cadastrarAluno(aluno);
     }
 
     private static void descadastrarAluno(IServidorSigava servidorSigava){
@@ -217,7 +218,7 @@ public class Sistema {
         }
     }
 
-    private static Tarefa cadastrarTarefa(IServidorSigava servidorSigava){
+    private static void cadastrarTarefa(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         Tarefa tarefa;
         String descricao, dataT[], data, data1;
@@ -243,7 +244,7 @@ public class Sistema {
         in.nextLine();
 
         tarefa =  new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa);
-        return tarefa;
+        servidorSigava.cadastrarTarefa(tarefa);
     }
 
     private static void descadastrarTarefa(IServidorSigava servidorSigava){
