@@ -42,8 +42,8 @@ public class ServidorSigava implements IServidorSigava{
         return this.alunos.cadastrar(nome, email, sexo, dataNascimento, senha, cpf);
     }
 
-    public boolean adicionarMarcacao(String nomeDisciplina, String nomeCronogram, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
-        return this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronogram, aluno, codigoTarefa, dataTermino);
+    public boolean adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+        return this.alunos.adicionarMarcacao(nomeDisciplina, nomeCronograma, aluno, codigoTarefa, dataTermino);
     }
 
     public boolean descadastrarAluno(Aluno aluno){

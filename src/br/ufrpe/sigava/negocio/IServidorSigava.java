@@ -16,7 +16,7 @@ public interface IServidorSigava {
 
     boolean cadastrarAluno(String nome, String email, char sexo, LocalDate dataNascimento, String senha, String cpf);
 
-    boolean adicionarMarcacao(String nomeDisciplina, String nomeCronogram, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
+    boolean adicionarMarcacao(String nomeDisciplina, String nomeCronograma, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
 
     boolean descadastrarAluno(Aluno aluno);
 
