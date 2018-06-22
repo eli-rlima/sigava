@@ -23,11 +23,7 @@ public class RepositorioAluno implements IRepositorioAluno{
     }
 
     public ArrayList<Aluno> listarAlunos(){
-        ArrayList <Aluno> retorno = null;
-        for (int i = 0; i < repositorioAluno.size(); i++) {
-            retorno.add(repositorioAluno.get(i));
-        }
-        return retorno;
+        return this.repositorioAluno;
     }
 
     @Override

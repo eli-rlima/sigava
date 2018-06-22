@@ -23,11 +23,7 @@ public class RepositorioDisciplina implements IRepositorioDisciplina {
     }
 
     public ArrayList<Disciplina> listarDisciplinas(){
-        ArrayList <Disciplina> retorno = null;
-        for (int i = 0; i < repositorioDisciplina.size(); i++) {
-            retorno.add(repositorioDisciplina.get(i));
-        }
-        return retorno;
+        return this.repositorioDisciplina;
     }
 
     @Override

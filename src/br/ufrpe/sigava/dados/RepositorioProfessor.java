@@ -22,11 +22,7 @@ public class RepositorioProfessor implements IRepositorioProfessor {
     }
 
     public ArrayList <Professor> listarProfessores(){
-        ArrayList <Professor> retorno = null;
-        for (int i = 0; i < repositorioProfessor.size(); i++) {
-            retorno.add(repositorioProfessor.get(i));
-        }
-        return retorno;
+        return this.repositorioProfessor;
     }
 
     @Override

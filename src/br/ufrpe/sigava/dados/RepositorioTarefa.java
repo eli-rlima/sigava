@@ -23,11 +23,7 @@ public class RepositorioTarefa implements IRepositorioTarefa {
     }
 
     public ArrayList <Tarefa> listarTarefas(){
-        ArrayList <Tarefa> retorno = null;
-        for (int i = 0; i < repositorioTarefas.size(); i++) {
-            retorno.add(repositorioTarefas.get(i));
-        }
-        return retorno;
+       return this.repositorioTarefas;
     }
 
 

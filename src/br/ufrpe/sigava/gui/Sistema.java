@@ -1,6 +1,8 @@
 package br.ufrpe.sigava.gui;
 
 import br.ufrpe.sigava.negocio.IServidorSigava;
+import br.ufrpe.sigava.negocio.beans.Cronograma;
+import br.ufrpe.sigava.negocio.beans.Marcacao;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
@@ -34,6 +36,55 @@ public class Sistema {
         System.out.println("18\t - SAIR");
     }
 
+    private static void CriarCronograma(Aluno aluno, IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        String nomeCrono, nomeDisc, data;
+        String dataR[];
+        LocalDate dataTermino;
+        int numDis, codigoTarefa;
+        Cronograma cronograma;
+        boolean ver;
+
+        if (aluno.getDisciplinas() == null){
+            System.out.println("O aluno não tem disciplinas cadastradas!");
+        }
+        else{
+            for (int i = 0; i < aluno.getDisciplinas().size(); i++){
+                System.out.println((i+1)+ "\t - " + aluno.getDisciplinas().get(i).getNome());
+            }
+
+            System.out.println("Digite o número da disciplina: ");
+            numDis = in.nextInt();
+
+            Disciplina disciplina =aluno.getDisciplinas().get(numDis);
+            nomeDisc = disciplina.getNome();
+
+            System.out.println(disciplina.ListarTarefas());
+
+            System.out.println("Digite o código da tarefa: ");
+            codigoTarefa = in.nextInt();
+
+            System.out.println("Data de Término (dd/MM/aaaa): ");
+            data = in.nextLine();
+            dataR = data.split("/");
+            dataTermino = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+
+            System.out.println("Digite o nome do cronograma: ");
+            nomeCrono = in.nextLine();
+            in.nextLine();
+            cronograma = new Cronograma(nomeCrono);
+
+            ver = servidorSigava.adicionarMarcacao(nomeDisc, nomeCrono, aluno, codigoTarefa, dataTermino);
+
+            if (ver){
+                System.out.println("Tarefa adicionada ao cronograma " + nomeCrono);
+            }
+            else{
+                System.out.println("Data de término selecionada maior que o limite!");
+            }
+        }
+    }
+
     private static void cadastroProfessor(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         Professor professor;
@@ -48,11 +99,12 @@ public class Sistema {
 
         System.out.println("Sexo (m ou f): ");
         sexo = in.next().charAt(0);
+        in.nextLine();
 
         System.out.println("Data de Nascimento (dd/MM/aaaa): ");
         data = in.nextLine();
         dataR = data.split("/");
-        dataNascimento = LocalDate.parse(dataR[0] + "-" + dataR[1] + "-" + dataR[2]);
+        dataNascimento = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
 
         System.out.println("CPF: ");
         cpf = in.nextLine();
@@ -106,7 +158,7 @@ public class Sistema {
         System.out.println("Data de Início (dd/MM/aaaa): ");
         data = in.nextLine();
         dataR = data.split("/");
-        dataInicio = LocalDate.parse(dataR[0] + "-" + dataR[1] + "-" + dataR[2]);
+        dataInicio = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
         diaAula = dataInicio.getDayOfWeek();
 
         System.out.println("Duração da aula: ");
