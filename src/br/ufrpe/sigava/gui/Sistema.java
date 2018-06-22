@@ -139,6 +139,82 @@ public class Sistema {
         }
     }
 
+    static void ProcurarAluno (IServidorSigava servidor){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o cpf do Aluno: ");
+        String cpf = scan.next();
+        if (servidor.buscarAluno(cpf) != null);
+        System.out.println(servidor.buscarAluno(cpf).toString());
+    }
+
+    static void ProcurarProfessor (IServidorSigava servidor){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o cpf do Professor: ");
+        String cpf = scan.next();
+        if (servidor.buscarProfessor(cpf) != null);
+        System.out.println(servidor.buscarProfessor(cpf).toString());
+    }
+
+    static void ProcurarDisciplina (IServidorSigava servidor){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o nome da disciplina: ");
+        String nome = scan.next();
+        if (servidor.buscarDisciplina(nome) != null);
+        System.out.println(servidor.buscarDisciplina(nome).toString());
+    }
+
+    static void ProcurarTarefa (IServidorSigava servidor){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o código da tarefa: ");
+        int codigo = scan.nextInt();
+        if (servidor.buscarTarefa(codigo)!= null);
+        System.out.println(servidor.buscarTarefa(codigo).toString());
+    }
+
+    static void ListarAlunos (IServidorSigava servidor){
+        if (servidor.listarAlunos() == null && servidor.listarAlunos().size()<1){
+            System.out.printf("Não há alunos no repositório.\n");
+        }
+        else {
+            for (int i = 0; i < servidor.listarAlunos().size() ; i++) {
+                System.out.printf(servidor.listarAlunos().get(i).toString());
+            }
+        }
+    }
+
+    static void ListarDisciplinas (IServidorSigava servidor){
+        if (servidor.listarDisciplinas() == null && servidor.listarDisciplinas().size()<1){
+            System.out.printf("Não há disciplinas no repositório.\n");
+        }
+        else {
+            for (int i = 0; i < servidor.listarDisciplinas().size() ; i++) {
+                System.out.printf(servidor.listarDisciplinas().get(i).toString());
+            }
+        }
+    }
+
+    static void ListarTarefas (IServidorSigava servidor){
+        if (servidor.listarTarefas() == null && servidor.listarTarefas().size()<1){
+            System.out.printf("Não há tarefas no repositório.\n");
+        }
+        else {
+            for (int i = 0; i < servidor.listarTarefas().size(); i++) {
+                System.out.printf(servidor.listarTarefas().get(i).toString());
+            }
+        }
+    }
+
+    static void ListarProfessores (IServidorSigava servidor){
+        if (servidor.listarProfessores() == null && servidor.listarProfessores().size()<1){
+            System.out.printf("Não há professores no repositório.\n");
+        }
+        else {
+            for (int i = 0; i < servidor.listarProfessores().size() ; i++) {
+                System.out.printf(servidor.listarProfessores().get(i).toString());
+            }
+        }
+    }
+
     public static void Sistema(IServidorSigava servidorSigava){
         Scanner in = new Scanner(System.in);
         int controleMenu = in.nextInt();
