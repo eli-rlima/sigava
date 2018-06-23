@@ -35,7 +35,11 @@ public class Sistema {
         System.out.println("17\t - Cronograma");
         System.out.println("18\t - Associar Aluno - Disciplina");
         System.out.println("19\t - Associar Professor - Disciplina");
-        System.out.println("20\t - SAIR");
+        System.out.println("20\t - Atualizar Alunos");
+        System.out.println("21\t - Atualizar Professores");
+        System.out.println("22\t - Atualizar Disciplinas");
+        System.out.println("23\t - Atualizar Tarefas");
+        System.out.println("24\t - SAIR");
     }
 
     private static void associarAlunoDisc(IServidorSigava servidorSigava){
@@ -526,6 +530,292 @@ public class Sistema {
         }
     }
 
+    private static void atualizarAluno (IServidorSigava servidorSigava) {
+        listarAlunos(servidorSigava);
+        Aluno aluno = selecionarAluno(servidorSigava);
+        if (aluno != null) {
+            Scanner in = new Scanner(System.in);
+            int verificador = in.nextInt();
+            in.nextLine();
+            do {
+                System.out.println("ESCOLHA UMA OPÇÃO: ");
+                System.out.println("1\t - Atualizar Nome.");
+                System.out.println("2\t - Atualizar Sexo.");
+                System.out.println("3\t - Atualizar Data de Nascimento.");
+                System.out.println("4\t - Atualizar Email.");
+                System.out.println("5\t - SAIR.");
+                switch (verificador) {
+                    case 1:
+                        System.out.println("Digite o novo nome: ");
+                        String nome = in.nextLine();
+                        aluno.setNome(nome);
+                        break;
+                    case 2:
+                        char sexo;
+                        System.out.println("Atualizar sexo (m ou f): ");
+                        sexo = in.next().charAt(0);
+                        in.nextLine();
+                        aluno.setSexo(sexo);
+                        break;
+                    case 3:
+                        LocalDate dataNascimento;
+                        do {
+                            String data;
+                            System.out.println("Data de Nascimento (dd/MM/aaaa): ");
+                            data = in.nextLine();
+                            String dataR[] = data.split("/");
+                            dataNascimento = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+                            if (dataNascimento.isAfter(LocalDate.now())) {
+                                System.out.println("Data de nascimento inválida!\nDigite uma data anterior a hoje!");
+                            }
+                        } while (dataNascimento.isAfter(LocalDate.now()));
+                        aluno.setDataNascimento(dataNascimento);
+                        break;
+                    case 4:
+                        String email;
+                        System.out.println("Atualizar email: ");
+                        email = in.nextLine();
+                        aluno.setEmail(email);
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        System.out.println("Favor digitar um valor dentro do Menu.");
+                        break;
+                }
+            } while (verificador != 5);
+        }
+    }
+
+
+
+    private static Tarefa selecionarTarefa(IServidorSigava servidorSigava){
+        Scanner in = new Scanner(System.in);
+        int codigo;
+        Tarefa tarefa = null;
+
+        System.out.println("\nDigite o ID da tarefa: ");
+        codigo = in.nextInt();
+        in.nextLine();
+
+        if (servidorSigava.buscarTarefa(codigo) == null){
+            System.out.println("Tarefa não encontrada!");
+        }
+        else {
+            tarefa = servidorSigava.buscarTarefa(codigo);
+        }
+        return tarefa;
+    }
+
+
+    private static void atualizarTarefa (IServidorSigava servidorSigava){
+        listarDisciplinas(servidorSigava);
+        Disciplina disciplina = selecionarDisciplina(servidorSigava);
+        disciplina.ListarTarefas();
+        Tarefa tarefa = selecionarTarefa(servidorSigava);
+        if (tarefa != null){
+            Scanner in = new Scanner (System.in);
+            int verificador = in.nextInt();
+            in.nextLine();
+            do {
+                System.out.println("ESCOLHA UMA OPÇÃO: ");
+                System.out.println("1\t - Atualizar Descrição.");
+                System.out.println("2\t - Atualizar dataInicio.");
+                System.out.println("3\t - Atualizar DataTermino.");
+                System.out.println("4\t - Atualizar Codigo da Tarefa.");
+                System.out.println("5\t - SAIR.");
+                switch (verificador){
+                    case 1:
+                        System.out.println("Digite a nova descrição: ");
+                        String nome = in.nextLine();
+                        tarefa.setDescricao(nome);
+                        break;
+                    case 2:
+                        String dataI[], data;
+                        LocalDate dataInicio;
+                        do{
+                            System.out.println("Nova data Inicio (dd/MM/aaaa): ");
+                            data = in.nextLine();
+                            dataI = data.split("/");
+                            dataInicio = LocalDate.parse(dataI[2] + "-" + dataI[1] + "-" + dataI[0]);
+                            if (dataInicio.isBefore(LocalDate.now())){
+                                System.out.println("Data de início anterior a hoje!!");
+                            }
+                        }while (dataInicio.isBefore(LocalDate.now()) && dataInicio.isBefore(disciplina.gerarDataFim()) &&
+                                dataInicio.isBefore(disciplina.getDataInicio()));
+                        tarefa.setDataTermino(dataInicio);
+                        break;
+                    case 3:
+                        String dataT[], data1;
+                        LocalDate dataTermino;
+                        do {
+                            System.out.println("Nova Data termino: ");
+                            data1 = in.nextLine();
+                            dataT = data1.split("/");
+                            dataTermino = LocalDate.parse(dataT[2] + "-" + dataT[1] + "-" + dataT[0]);
+                            if (dataTermino.isAfter(disciplina.gerarDataFim())){
+                                System.out.println("A data fornecida é após o término da disciplina!");
+                            }
+                            if (dataTermino.isBefore(tarefa.getDataInicio())){
+                                System.out.println("A data fornecida é anterior a data início da tarefa!");
+                            }
+                            if (dataTermino.isBefore(disciplina.getDataInicio())){
+                                System.out.println("A data fornecida é antes do início da disciplina!");
+                            }
+                        }while (dataTermino.isAfter(disciplina.gerarDataFim()) && dataTermino.isBefore(tarefa.getDataInicio()) &&
+                                dataTermino.isBefore(disciplina.getDataInicio()));
+                        tarefa.setDataTermino(dataTermino);
+                        break;
+                    case 4:
+                        int codigo;
+                        do{
+                            System.out.println("Digite o novo código da Tarefa: ");
+                            codigo = in.nextInt();
+                            in.nextLine();
+                            if (codigo <= 0){
+                                System.out.printf("Digite um valor positivo.");
+                            }
+                        }while (codigo <=0);
+                        tarefa.setCodigoTarefa(codigo);
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        System.out.println("Favor digitar um valor dentro do Menu.");
+                        break;
+                }
+            }while(verificador != 5);
+        }
+    }
+
+
+    private static void atualizarProfessor (IServidorSigava servidorSigava){
+        listarProfessores(servidorSigava);
+        Professor professor = selecionarProfessor(servidorSigava);
+        if(professor != null){
+            Scanner in = new Scanner (System.in);
+            int verificador = in.nextInt();
+            in.nextLine();
+
+            do {
+                System.out.println("ESCOLHA UMA OPÇÃO: ");
+                System.out.println("1\t - Atualizar Nome.");
+                System.out.println("2\t - Atualizar Sexo.");
+                System.out.println("3\t - Atualizar Data de Nascimento.");
+                System.out.println("4\t - Atualizar Email.");
+                System.out.println("5\t - SAIR.");
+                switch (verificador){
+                    case 1:
+                        System.out.println("Digite o novo nome: ");
+                        String nome = in.nextLine();
+                        professor.setNome(nome);
+                        break;
+                    case 2:
+                        char sexo;
+                        System.out.println("Atualizar sexo (m ou f): ");
+                        sexo = in.next().charAt(0);
+                        in.nextLine();
+                        professor.setSexo(sexo);
+                        break;
+                    case 3:
+                        LocalDate dataNascimento;
+                        do {
+                            String data;
+                            System.out.println("Data de Nascimento (dd/MM/aaaa): ");
+                            data = in.nextLine();
+                            String dataR[] = data.split("/");
+                            dataNascimento = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+                            if (dataNascimento.isAfter(LocalDate.now())){
+                                System.out.println("Data de nascimento inválida!!\nDigite uma data anterior a hoje!");
+                            }
+                        }while (dataNascimento.isAfter(LocalDate.now()));
+                        professor.setDataNascimento(dataNascimento);
+                        break;
+                    case 4:
+                        String email;
+                        System.out.println("Atualizar email: ");
+                        email = in.nextLine();
+                        professor.setEmail(email);
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        System.out.println("Favor digitar um valor dentro do Menu.");
+                        break;
+                }
+            }while(verificador != 5);
+        }
+    }
+
+    public static void atualizarDisciplina (IServidorSigava servidorSigava){
+        listarDisciplinas(servidorSigava);
+        Disciplina disciplina = selecionarDisciplina(servidorSigava);
+        if(disciplina != null) {
+            Scanner in = new Scanner(System.in);
+            int verificador = in.nextInt();
+            in.nextLine();
+
+            do {
+                System.out.println("ESCOLHA UMA OPÇÃO: ");
+                System.out.println("1\t - Atualizar Nome.");
+                System.out.println("2\t - Atualizar Professor.");
+                System.out.println("3\t - Atualizar Data de inicio.");
+                System.out.println("4\t - Atualizar Duracao.");
+                System.out.println("5\t - SAIR.");
+                switch (verificador){
+                    case 1:
+                        System.out.println("Digite o novo nome: ");
+                        String nome = in.nextLine();
+                        disciplina.setNome(nome);
+                        break;
+                    case 2:
+                        listarProfessores(servidorSigava);
+                        Professor professor = selecionarProfessor(servidorSigava);
+                        if(professor != null){
+                            disciplina.setProfessor(professor);
+                        }
+                        else{
+                            System.out.println("Professor nao atualizado!");
+                        }
+                        break;
+                    case 3:
+                        LocalDate dataInicio;
+                        String data, dataR [];
+                        do {
+                            System.out.println("Data de Início (dd/MM/aaaa): ");
+                            data = in.nextLine();
+                            dataR = data.split("/");
+                            dataInicio = LocalDate.parse(dataR[2] + "-" + dataR[1] + "-" + dataR[0]);
+                            if (dataInicio.isBefore(LocalDate.now())){
+                                System.out.println("Data de início anterior à hoje!!");
+                            }
+                        }while (dataInicio.isBefore(LocalDate.now()));
+                        disciplina.setDataInicio(dataInicio);
+                        break;
+                    case 4:
+                        int duracao;
+                        do{
+                            System.out.println("Digite o novo código da Tarefa: ");
+                            duracao = in.nextInt();
+                            in.nextLine();
+                            if (duracao <= 0){
+                                System.out.printf("Digite um valor positivo!!");
+                            }
+                        }while (duracao <=0);
+                        disciplina.setDuracaoAula(duracao);
+                        break;
+                    case 5:
+                        break;
+                    default:
+                        System.out.println("Favor digitar um valor dentro do Menu.");
+                        break;
+                }
+
+            }while(verificador != 5);
+        }
+
+    }
+
     public static void Sistema(IServidorSigava servidorSigava){
         boolean loop = true;
         do {
@@ -592,6 +882,17 @@ public class Sistema {
                     associarDiscProf(servidorSigava);
                     break;
                 case 20:
+                    atualizarAluno(servidorSigava);
+                    break;
+                case 21:
+                    atualizarProfessor(servidorSigava);
+                    break;
+                case 22:
+                    atualizarDisciplina(servidorSigava);
+                    break;
+                case 23:
+                    atualizarTarefa(servidorSigava);
+                case 24:
                     loop = false;
                     break;
                 default:
