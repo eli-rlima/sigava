@@ -149,7 +149,7 @@ public class Sistema {
 
             System.out.println("Digite o número da disciplina: ");
             numDis = in.nextInt();
-            
+
             Disciplina disciplina = aluno.getDisciplinas().get(numDis-1);
             nomeDisc = disciplina.getNome();
 
@@ -535,8 +535,8 @@ public class Sistema {
         Aluno aluno = selecionarAluno(servidorSigava);
         if (aluno != null) {
             Scanner in = new Scanner(System.in);
-            int verificador = in.nextInt();
-            in.nextLine();
+            int verificador;
+
             do {
                 System.out.println("ESCOLHA UMA OPÇÃO: ");
                 System.out.println("1\t - Atualizar Nome.");
@@ -544,6 +544,8 @@ public class Sistema {
                 System.out.println("3\t - Atualizar Data de Nascimento.");
                 System.out.println("4\t - Atualizar Email.");
                 System.out.println("5\t - SAIR.");
+                verificador = in.nextInt();
+                in.nextLine();
                 switch (verificador) {
                     case 1:
                         System.out.println("Digite o novo nome: ");
@@ -615,8 +617,7 @@ public class Sistema {
         Tarefa tarefa = selecionarTarefa(servidorSigava);
         if (tarefa != null){
             Scanner in = new Scanner (System.in);
-            int verificador = in.nextInt();
-            in.nextLine();
+            int verificador;
             do {
                 System.out.println("ESCOLHA UMA OPÇÃO: ");
                 System.out.println("1\t - Atualizar Descrição.");
@@ -624,6 +625,8 @@ public class Sistema {
                 System.out.println("3\t - Atualizar DataTermino.");
                 System.out.println("4\t - Atualizar Codigo da Tarefa.");
                 System.out.println("5\t - SAIR.");
+                verificador = in.nextInt();
+                in.nextLine();
                 switch (verificador){
                     case 1:
                         System.out.println("Digite a nova descrição: ");
@@ -694,8 +697,7 @@ public class Sistema {
         Professor professor = selecionarProfessor(servidorSigava);
         if(professor != null){
             Scanner in = new Scanner (System.in);
-            int verificador = in.nextInt();
-            in.nextLine();
+            int verificador;
 
             do {
                 System.out.println("ESCOLHA UMA OPÇÃO: ");
@@ -704,6 +706,8 @@ public class Sistema {
                 System.out.println("3\t - Atualizar Data de Nascimento.");
                 System.out.println("4\t - Atualizar Email.");
                 System.out.println("5\t - SAIR.");
+                verificador = in.nextInt();
+                in.nextLine();
                 switch (verificador){
                     case 1:
                         System.out.println("Digite o novo nome: ");
@@ -752,8 +756,7 @@ public class Sistema {
         Disciplina disciplina = selecionarDisciplina(servidorSigava);
         if(disciplina != null) {
             Scanner in = new Scanner(System.in);
-            int verificador = in.nextInt();
-            in.nextLine();
+            int verificador;
 
             do {
                 System.out.println("ESCOLHA UMA OPÇÃO: ");
@@ -762,6 +765,8 @@ public class Sistema {
                 System.out.println("3\t - Atualizar Data de inicio.");
                 System.out.println("4\t - Atualizar Duracao.");
                 System.out.println("5\t - SAIR.");
+                verificador = in.nextInt();
+                in.nextLine();
                 switch (verificador){
                     case 1:
                         System.out.println("Digite o novo nome: ");
@@ -795,7 +800,7 @@ public class Sistema {
                     case 4:
                         int duracao;
                         do{
-                            System.out.println("Digite o novo código da Tarefa: ");
+                            System.out.println("Digite a duração: ");
                             duracao = in.nextInt();
                             in.nextLine();
                             if (duracao <= 0){
@@ -892,6 +897,7 @@ public class Sistema {
                     break;
                 case 23:
                     atualizarTarefa(servidorSigava);
+                    break;
                 case 24:
                     loop = false;
                     break;
