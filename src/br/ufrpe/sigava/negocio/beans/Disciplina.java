@@ -22,11 +22,11 @@ public class Disciplina{
 
 
     public Disciplina(String nome, LocalDate dataInicio, DayOfWeek diaAula, int duracaoAula,int cargaHoraria) {
-        this.setNome(nome);
-        this.setDataInicio(dataInicio);
-        this.setDiaAula(diaAula);
-        this.setDuracaoAula(duracaoAula);
-        this.setCargaHoraria(cargaHoraria);
+        this.nome= nome;
+        this.dataInicio = dataInicio;
+        this.diaAula = diaAula;
+        this.duracaoAula = duracaoAula;
+        this.cargaHoraria = cargaHoraria;
         this.setDataFim(this.gerarDataFim());
     }
 
@@ -56,6 +56,7 @@ public class Disciplina{
 
     public void setDuracaoAula(int duracaoAula) {
         this.duracaoAula = duracaoAula;
+        this.setDataFim(this.gerarDataFim());
     }
 
     public String getNome() {
@@ -96,9 +97,10 @@ public class Disciplina{
 
     public void setDataInicio(LocalDate dataInicio) {
     this.dataInicio = dataInicio;
+    this.setDataFim(this.gerarDataFim());
     }
 
-    public void setDataFim(LocalDate dataFim) {
+    private void setDataFim(LocalDate dataFim) {
     this.dataFim = dataFim;
     }
 
@@ -108,10 +110,12 @@ public class Disciplina{
 
     public void setDiaAula(DayOfWeek diaAula) {
     this.diaAula = diaAula;
+    this.setDataFim(this.gerarDataFim());
     }
 
     public void setCargaHoraria(int cargaHoraria) {
     this.cargaHoraria = cargaHoraria;
+    this.setDataFim(this.gerarDataFim());
     }
 
     public boolean adicionarAluno(Aluno aluno) {

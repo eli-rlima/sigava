@@ -37,6 +37,5 @@ public class Marcacao {
         retorno.append(tarefa.procurar(codigoTarefa).toString());
         retorno.append("\nData termino do aluno: "+dataTermino.format(DateTimeFormatter.BASIC_ISO_DATE.ofPattern("dd/MM/yyyy")));
         return retorno.toString();
-
     }
 }
