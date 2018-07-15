@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CadastroAlunos {
-    private RepositorioAluno repositorioAluno;
+    private IRepositorioAluno repositorioAluno;
 
     public CadastroAlunos(){
         this.repositorioAluno = RepositorioAluno.getInstance();

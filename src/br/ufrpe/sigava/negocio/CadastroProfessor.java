@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 
 public class CadastroProfessor {
-    private RepositorioProfessor repositorioProfessor;
+    private IRepositorioProfessor repositorioProfessor;
 
     public CadastroProfessor (){
-        this.repositorioProfessor = repositorioProfessor.getInstance();
+        this.repositorioProfessor = RepositorioProfessor.getInstance();
     }
 
     public boolean cadastrar (Professor professor){

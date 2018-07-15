@@ -1,5 +1,6 @@
 package br.ufrpe.sigava.dados;
 
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Professor;
 
@@ -31,7 +32,8 @@ public interface IRepositorioTarefa {
      *
      * @return true ou false, caso seja adicionado true, caso não false.
      */
-     boolean adicionar (String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa);
+     boolean adicionar (String descricao, LocalDate dataInicio, LocalDate dataTermino,
+                        int codigoTarefa, Disciplina disciplina);
 
     /**
      * Remove uma tareda do repositório tarefa

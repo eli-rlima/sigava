@@ -13,11 +13,11 @@ public class Professor extends Pessoa {
 
     public boolean adicionar(Disciplina disciplina){
         return this.disciplinasCadastradas.add(disciplina);
-    }
+    }//
 
     public boolean remover(Disciplina disciplina){
         return this.disciplinasCadastradas.remove(disciplina);
-    }
+    }//
 
     public ArrayList<Disciplina> getDisciplinas(){
         return disciplinasCadastradas;

@@ -8,19 +8,32 @@ public class Tarefa {
     private String descricao; 
     private LocalDate dataInicio; 
     private LocalDate dataTermino; 
-    private int codigoTarefa; 
+    private int codigoTarefa;
+
+
+    private Disciplina disciplina;
  
-    public Tarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa) { 
+    public Tarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino,
+                  int codigoTarefa, Disciplina disciplina) {
         this.setDescricao(descricao);
         this.setDataInicio(dataInicio);
         this.setDataTermino(dataTermino);
         this.setCodigoTarefa(codigoTarefa);
+        this.setDisciplina(disciplina);
     }
     
     public Tarefa(){
     	
     }
- 
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
     public String getDescricao() { 
         return descricao; 
     } 
