@@ -24,11 +24,11 @@ public  class Aluno extends Pessoa{
 
     public boolean adicionarDisciplina(Disciplina disciplina){
         return disciplinas.add(disciplina);
-    }
+    }//
 
     public boolean removerDisciplina(Disciplina disciplina){
         return disciplinas.remove(disciplina);
-    }
+    }//
 
     public Disciplina buscarDisciplina(String nomeDisciplina){
         Disciplina disciplina = null;

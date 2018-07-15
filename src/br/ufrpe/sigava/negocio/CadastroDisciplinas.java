@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CadastroDisciplinas {
-    private RepositorioDisciplina repositorioDisciplina;
+    private IRepositorioDisciplina repositorioDisciplina;
 
     public CadastroDisciplinas(){
         this.repositorioDisciplina = RepositorioDisciplina.getInstance();

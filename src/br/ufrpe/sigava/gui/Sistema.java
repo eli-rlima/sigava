@@ -368,7 +368,7 @@ public class Sistema {
         }while (dataTermino.isAfter(disciplina.gerarDataFim()) && dataTermino.isBefore(dataInicio) &&
                 dataTermino.isBefore(disciplina.getDataInicio()));
 
-        tarefa =  new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa);
+        tarefa =  new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa, disciplina);
         servidorSigava.cadastrarTarefa(tarefa);
         servidorSigava.cadastrarTarefaDisciplina(disciplina.getNome(), tarefa);
         System.out.println("Tarefa cadastrada");

@@ -1,4 +1,5 @@
 package br.ufrpe.sigava.dados;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 
 import java.time.LocalDate;
@@ -34,8 +35,9 @@ public class RepositorioTarefa implements IRepositorioTarefa {
     }
 
     @Override
-    public boolean adicionar (String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa){
-        Tarefa tarefa = new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa);
+    public boolean adicionar (String descricao, LocalDate dataInicio,
+                              LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
+        Tarefa tarefa = new Tarefa(descricao,dataInicio,dataTermino,codigoTarefa,disciplina);
         return adicionar(tarefa);
     }
 

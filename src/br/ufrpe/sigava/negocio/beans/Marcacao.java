@@ -8,10 +8,12 @@ import java.time.format.DateTimeFormatter;
 public class Marcacao {
     private int codigoTarefa;
     private LocalDate dataTermino;
+    private Tarefa tarefa;
 
-    public Marcacao(int codigoTarefa, LocalDate dataTermino) {
+    public Marcacao(int codigoTarefa, LocalDate dataTermino, Tarefa tarefa) {
         this.codigoTarefa = codigoTarefa;
         this.dataTermino = dataTermino;
+        this.tarefa = tarefa;
     }
 
     public int getCodigoTarefa() {
@@ -34,7 +36,7 @@ public class Marcacao {
     public String toString(){
         CadastroTarefas tarefa = new CadastroTarefas();
         StringBuilder retorno = new StringBuilder();
-        retorno.append(tarefa.procurar(codigoTarefa).toString());
+        retorno.append(tarefa);
         retorno.append("\nData termino do aluno: "+dataTermino.format(DateTimeFormatter.BASIC_ISO_DATE.ofPattern("dd/MM/yyyy")));
         return retorno.toString();
     }

@@ -1,5 +1,7 @@
 package br.ufrpe.sigava.negocio;
 
+import br.ufrpe.sigava.dados.IRepositorioTarefa;
+import br.ufrpe.sigava.negocio.beans.Disciplina;
 import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.dados.RepositorioTarefa;
 
@@ -7,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CadastroTarefas {
-    private RepositorioTarefa repositorioTarefa;
+    private IRepositorioTarefa repositorioTarefa;
 
     public CadastroTarefas(){
         this.repositorioTarefa = RepositorioTarefa.getInstance();
@@ -29,11 +31,14 @@ public class CadastroTarefas {
         return repositorioTarefa.listarTarefas();
     }
 
-    public boolean cadastrar(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa){
+    public boolean cadastrar(String descricao, LocalDate dataInicio,
+                             LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
         boolean retorno = false;
-        if (descricao != null && dataInicio != null && dataTermino != null && codigoTarefa >= 0) { //TODO
+        if (descricao != null && dataInicio != null && dataTermino != null
+                && disciplina != null && codigoTarefa >= 0) { //TODO
             if (this.repositorioTarefa.buscar(codigoTarefa) != null){ //TODO
-                retorno = this.repositorioTarefa.adicionar(descricao, dataInicio, dataTermino, codigoTarefa);
+                retorno = this.repositorioTarefa.adicionar(descricao, dataInicio,
+                        dataTermino, codigoTarefa, disciplina);
             }
         }
         return retorno;
