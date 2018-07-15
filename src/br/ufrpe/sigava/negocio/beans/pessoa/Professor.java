@@ -22,8 +22,7 @@ public class Professor extends Pessoa {
     public ArrayList<Disciplina> getDisciplinas(){
         return disciplinasCadastradas;
     }
-
-
+    
     public Disciplina buscarDisciplina(String nomeDisciplina){
         Disciplina disciplina = null;
         for (int i = 0; i < this.disciplinasCadastradas.size(); i++){
