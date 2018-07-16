@@ -2,6 +2,7 @@ package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Cronograma;
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 
 import java.time.LocalDate;
@@ -59,9 +60,9 @@ public class RepositorioAluno implements IRepositorioAluno{
     }
 
     @Override
-    public boolean adicionarMarcacao(String nome, Aluno aluno, int codigoTarefa, LocalDate dataTermino){
+    public boolean adicionarMarcacao(String nome, Aluno aluno, int codigoTarefa, LocalDate dataTermino, Tarefa tarefa){
         Cronograma cronograma = aluno.buscarCronograma(nome);
-        return cronograma.adicionar(codigoTarefa, dataTermino);
+        return cronograma.adicionar(codigoTarefa, dataTermino, tarefa);
     }
 
     @Override

@@ -76,8 +76,8 @@ public class CadastroAlunos {
                         aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa) != null) { //TODO
                     tarefa = aluno.buscarDisciplina(nomeDisciplina).procurarTarefa(codigoTarefa);
                     if (tarefa.getDataTermino().isEqual(dataTermino) || tarefa.getDataTermino().isAfter(dataTermino)){ //TODO
-                        marcacao = new Marcacao(codigoTarefa,dataTermino);
-                        retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino);
+                        marcacao = new Marcacao(codigoTarefa,dataTermino, tarefa);
+                        retorno = repositorioAluno.adicionarMarcacao(nomeCronograma, aluno, codigoTarefa, dataTermino, tarefa);
                     }
                 }
             }

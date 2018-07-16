@@ -13,8 +13,8 @@ public class Cronograma {
         return marcacoes.add(marcacao);
     }
 
-    public boolean adicionar(int codigoTarefa, LocalDate dataTermino){
-        Marcacao marcacao = new Marcacao(codigoTarefa, dataTermino);
+    public boolean adicionar(int codigoTarefa, LocalDate dataTermino, Tarefa tarefa){
+        Marcacao marcacao = new Marcacao(codigoTarefa, dataTermino, tarefa);
         return this.adicionar(marcacao);
     }
 

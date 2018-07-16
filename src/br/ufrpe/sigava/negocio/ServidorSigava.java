@@ -127,8 +127,9 @@ public class ServidorSigava implements IServidorSigava{
         return this.tarefas.cadastrar(tarefa);
     }
 
-    public boolean cadastrarTarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa){
-        return this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa);
+    public boolean cadastrarTarefa(String descricao, LocalDate dataInicio,
+                                   LocalDate dataTermino, int codigoTarefa, Disciplina disciplina){
+        return this.tarefas.cadastrar(descricao, dataInicio, dataTermino, codigoTarefa, disciplina);
     }
 
     public boolean descadastrarTarefa(Tarefa tarefa){

@@ -1,6 +1,7 @@
 package br.ufrpe.sigava.dados;
 
 import br.ufrpe.sigava.negocio.beans.Disciplina;
+import br.ufrpe.sigava.negocio.beans.Tarefa;
 import br.ufrpe.sigava.negocio.beans.pessoa.Aluno;
 
 import java.time.LocalDate;
@@ -52,7 +53,7 @@ public interface IRepositorioAluno {
      *
      * @return true ou false, caso tenha sido adicionado true, caso não false.
      */
-    boolean adicionarMarcacao(String nome, Aluno aluno, int codigoTarefa, LocalDate dataTermino);
+    boolean adicionarMarcacao(String nome, Aluno aluno, int codigoTarefa, LocalDate dataTermino, Tarefa tarefa);
 
     /**
      * Remove um aluno do repositório de alunos

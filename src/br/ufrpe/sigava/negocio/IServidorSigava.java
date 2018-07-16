@@ -51,7 +51,8 @@ public interface IServidorSigava {
 
     boolean cadastrarTarefa(Tarefa tarefa);
 
-    boolean cadastrarTarefa(String descricao, LocalDate dataInicio, LocalDate dataTermino, int codigoTarefa);
+    boolean cadastrarTarefa(String descricao, LocalDate dataInicio,
+                            LocalDate dataTermino, int codigoTarefa, Disciplina disciplina);
 
     boolean descadastrarTarefa(Tarefa tarefa);
 
